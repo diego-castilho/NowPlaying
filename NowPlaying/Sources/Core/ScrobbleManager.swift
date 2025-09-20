@@ -1,0 +1,112 @@
+import Foundation
+import CoreData
+import Combine
+
+@MainActor
+final class ScrobbleManager: ObservableObject {
+    private let lastfm: LastFMClient
+    private let context: NSManagedObjectContext
+    private let artwork: ArtworkStore
+
+    private var currentTrackKey: String?
+    private var currentStartDate: Date?
+    private var currentTotalSec: Int?
+    private var scrobbleTimer: Timer?
+
+    init(lastfm: LastFMClient, context: NSManagedObjectContext, artwork: ArtworkStore) {
+        self.lastfm = lastfm
+        self.context = context
+        self.artwork = artwork
+    }
+
+    func handle(_ np: NowPlayingInfo) {
+        guard let title = np.name, let artist = np.artist else { return }
+
+        switch np.state {
+        case "Playing":
+            let album = np.album
+            let totalSec = max(0, (np.totalMs ?? 0) / 1000)
+            let key = "\(artist)|\(title)|\(album ?? "")"
+
+            if key != currentTrackKey {
+                cancelTimer()
+                currentTrackKey = key
+                currentStartDate = Date()
+                currentTotalSec = totalSec
+
+                artwork.title = title
+                artwork.artist = artist
+                artwork.album = album
+                artwork.image = artwork.placeholder()
+
+                Task {
+                    if let url = await lastfm.fetchArtworkURL(artist: artist, track: title, album: album),
+                       let img = await loadNSImage(from: url) {
+                        artwork.image = img
+                    }
+                    do {
+                        try await lastfm.updateNowPlaying(artist: artist, track: title, album: album, durationSec: totalSec > 0 ? totalSec : nil)
+                        LogEntry.create(context: context, kind: "nowPlaying", status: "ok",
+                                        track: title, artist: artist, album: album, extra: nil)
+                    } catch {
+                        LogEntry.create(context: context, kind: "nowPlaying", status: "failed",
+                                        track: title, artist: artist, album: album, extra: error.localizedDescription)
+                    }
+                }
+
+                scheduleScrobbleIfNeeded(totalSec: totalSec)
+            }
+
+        case "Paused":
+            cancelTimer()
+
+        case "Stopped":
+            if let start = currentStartDate, let tot = currentTotalSec, tot > 0 {
+                let played = Int(Date().timeIntervalSince(start))
+                let threshold = min(max(30, tot / 2), 240)
+                if played >= threshold { fireScrobble() }
+            }
+            cancelTimer()
+            currentTrackKey = nil
+            currentStartDate = nil
+            currentTotalSec = nil
+
+        default:
+            break
+        }
+    }
+
+    private func scheduleScrobbleIfNeeded(totalSec: Int) {
+        guard totalSec > 30 else { return }
+        let threshold = min(max(30, totalSec / 2), 240)
+        scrobbleTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(threshold), repeats: false) { [weak self] _ in
+            self?.fireScrobble()
+        }
+    }
+
+    private func fireScrobble() {
+        guard let key = currentTrackKey,
+              let start = currentStartDate,
+              let tot = currentTotalSec else { return }
+        let parts = key.split(separator: "|").map(String.init)
+        let artist = parts[0], title = parts[1]
+        let album = parts.count > 2 ? parts[2] : nil
+        let ts = Int(start.timeIntervalSince1970)
+
+        Task {
+            do {
+                try await lastfm.scrobble(artist: artist, track: title, album: album?.isEmpty == true ? nil : album, timestamp: ts, durationSec: tot)
+                LogEntry.create(context: context, kind: "scrobble", status: "ok",
+                                track: title, artist: artist, album: album, extra: nil)
+            } catch {
+                LogEntry.create(context: context, kind: "scrobble", status: "failed",
+                                track: title, artist: artist, album: album, extra: error.localizedDescription)
+            }
+        }
+    }
+
+    private func cancelTimer() {
+        scrobbleTimer?.invalidate()
+        scrobbleTimer = nil
+    }
+}
