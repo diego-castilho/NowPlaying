@@ -21,20 +21,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let lastfm = LastFMClient()
     private let artwork = ArtworkStore()
     private let progress = PlaybackProgress()   // progresso compartilhado
+    private var monitor: NowPlayingMonitor?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.shared = self
         NSApp.setActivationPolicy(.accessory)
 
-        // DEMO: remova/ajuste quando usar dados reais
-        progress.setTrack(duration: 245, startAt: 32, playing: true)
-
         let content = MenuBarPanelView(core: core, lastfm: lastfm, artwork: artwork)
             .environmentObject(progress) // injeta no popover
 
         popover.behavior = .transient
-        popover.contentSize = NSSize(width: 320, height: 260)
+        popover.contentSize = NSSize(width: 480, height: 260)
         popover.contentViewController = NSHostingController(rootView: content)
+
+        // Start Apple Music monitor and retain it
+        let monitor = NowPlayingMonitor(progress: progress)
+        monitor.start()
+        self.monitor = monitor
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = statusItem.button {
@@ -132,19 +135,6 @@ struct MenuBarPanelView: View {
         VStack(alignment: .leading, spacing: 12) {
             ArtworkWidgetView(artwork: artwork)
 
-            // ===== Progress bar (popover) =====
-            VStack(spacing: 4) {
-                ProgressView(value: progress.fraction)
-                    .progressViewStyle(.linear)
-                HStack {
-                    Text(progress.elapsedString)
-                    Spacer()
-                    Text(progress.remainingString)
-                }
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-            }
-
             HStack {
                 Button {
                     AppDelegate.shared?.openMainWindow()
@@ -168,6 +158,6 @@ struct MenuBarPanelView: View {
             }
         }
         .padding(8)
-        .frame(width: 320)
+        .frame(width: 480)
     }
 }

@@ -15,8 +15,49 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            ArtworkWidgetView(artwork: artwork)
-                .padding([.horizontal, .top])
+            HStack(alignment: .top, spacing: 16) {
+                Image(nsImage: artwork.image ?? artwork.placeholder())
+                    .resizable()
+                    .aspectRatio(1, contentMode: .fill)
+                    .frame(width: 160, height: 160)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .shadow(radius: 8)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text("Música:").font(.title2).bold().foregroundStyle(.secondary)
+                        Text(artwork.title).font(.title2).bold().lineLimit(2)
+                    }
+                    if let al = artwork.album, !al.isEmpty {
+                        HStack(alignment: .firstTextBaseline, spacing: 6) {
+                            Text("Álbum:").font(.headline).foregroundStyle(.secondary)
+                            Text(al).font(.headline).foregroundColor(.white).lineLimit(1)
+                        }
+                    }
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text("Artista:").font(.headline).foregroundStyle(.secondary)
+                        Text(artwork.artist).font(.headline).foregroundColor(.white).lineLimit(1)
+                    }
+
+                    VStack(spacing: 6) {
+                        ProgressView(value: progress.fraction)
+                            .progressViewStyle(.linear)
+                        HStack {
+    Text(progress.elapsedString)
+        .monospacedDigit()
+        .foregroundColor(.white)
+    Spacer()
+    Text(progress.remainingString)
+        .monospacedDigit()
+        .foregroundColor(.white)
+}
+.font(.caption)
+                        .foregroundStyle(.secondary)
+                    }
+                    .padding(.top, 8)
+                }
+            }
+            .padding([.horizontal, .top])
 
             HStack {
                 if let u = lastfm.username {

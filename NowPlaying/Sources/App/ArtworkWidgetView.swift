@@ -4,41 +4,49 @@ import AppKit
 struct ArtworkWidgetView: View {
     @ObservedObject var artwork: ArtworkStore
     @EnvironmentObject var progress: PlaybackProgress
-
+    
+    
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(alignment: .top, spacing: 12) {
             Image(nsImage: artwork.image ?? artwork.placeholder())
                 .resizable()
                 .aspectRatio(1, contentMode: .fill)
-                .frame(width: 84, height: 84)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text(artwork.title).font(.headline).lineLimit(2)
-                Text(artwork.artist).font(.subheadline).foregroundStyle(.secondary).lineLimit(1)
-                if let al = artwork.album, !al.isEmpty {
-                    Text(al).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                .frame(width: 120, height: 120)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .shadow(radius: 6)
+            
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Text("Música:").font(.title2).bold().foregroundStyle(.secondary)
+                    Text(artwork.title).font(.title2).bold().lineLimit(2)
                 }
-            }
-            VStack(alignment: .leading, spacing: 4) {
-                Text(artwork.title).font(.headline).lineLimit(2)
-                Text(artwork.artist).font(.subheadline).foregroundStyle(.secondary).lineLimit(1)
                 if let al = artwork.album, !al.isEmpty {
-                    Text(al).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text("Álbum:").font(.headline).foregroundStyle(.secondary)
+                        Text(al).font(.headline).foregroundColor(.white).lineLimit(1)
+                    }
                 }
-
-                // Mini progress embutido no card
-                VStack(spacing: 2) {
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Text("Artista:").font(.headline).foregroundStyle(.secondary)
+                    Text(artwork.artist).font(.headline).foregroundColor(.white).lineLimit(1)
+                }
+                
+                VStack(spacing: 4) {
                     ProgressView(value: progress.fraction)
                         .progressViewStyle(.linear)
                     HStack {
-                        Text(progress.elapsedString)
-                        Spacer()
-                        Text(progress.remainingString)
-                    }
-                    .font(.caption2)
+    Text(progress.elapsedString)
+        .monospacedDigit()
+        .foregroundColor(.white)
+    Spacer()
+    Text(progress.remainingString)
+        .monospacedDigit()
+        .foregroundColor(.white)
+}
+.font(.caption2)
                     .foregroundStyle(.secondary)
                 }
+                .padding(.top, 4)
             }
             Spacer()
         }
@@ -46,4 +54,5 @@ struct ArtworkWidgetView: View {
         .background(.thinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
+    
 }
