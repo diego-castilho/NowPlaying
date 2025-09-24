@@ -16,6 +16,8 @@ struct ContentView: View {
             HStack(alignment: .center, spacing: 16) {
                 Image(nsImage: artwork.image ?? artwork.placeholder())
                     .resizable()
+                    .interpolation(.high)
+                    .antialiased(true)
                     .aspectRatio(1, contentMode: .fill)
                     .frame(width: 120, height: 120)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -108,8 +110,8 @@ struct ContentView: View {
         .onAppear {
             let mgr = ScrobbleManager(lastfm: lastfm, context: context, artwork: artwork)
             self.scrobbler = mgr
-            MusicEventListener.shared.start { info in
-                mgr.handle(info)
+            MusicEventListener.shared.start { [weak mgr] info in
+                mgr?.handle(info)
             }
         }
         .alert("Falha na autenticação", isPresented: $showingError, actions: {

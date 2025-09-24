@@ -1,6 +1,5 @@
 import Foundation
 import Combine
-import AppKit
 
 struct LastFMError: LocalizedError {
     let code: Int
@@ -26,29 +25,36 @@ final class LastFMClient: ObservableObject {
         let base = ["api_key": key, "method": "auth.getToken"]
         var params = base; params["api_sig"] = apiSig(for: base); params["format"] = "json"
         let data = try await post(params)
-        let obj = try JSONSerialization.jsonObject(with: data) as! [String:Any]
-        guard let token = obj["token"] as? String else { throw LastFMError(code: -1, message: "Token ausente") }
+        let any = try JSONSerialization.jsonObject(with: data)
+        guard let obj = any as? [String: Any], let token = obj["token"] as? String else {
+            throw LastFMError(code: -1, message: "Token ausente")
+        }
         return token
     }
 
     func authURL(token: String) -> URL {
-        var c = URLComponents(string: "https://www.last.fm/api/auth")!
+        var c = URLComponents()
+        c.scheme = "https"
+        c.host = "www.last.fm"
+        c.path = "/api/auth"
         c.queryItems = [
             .init(name: "api_key", value: key),
             .init(name: "token", value: token)
         ]
-        return c.url!
+        // URLComponents always builds a valid URL with the given scheme/host/path; fallback to a known string if needed
+        return c.url ?? URL(string: "https://www.last.fm/api/auth?api_key=\(key)&token=\(token)")!
     }
 
     func getSession(with token: String) async throws {
         var p = ["api_key": key, "method": "auth.getSession", "token": token]
         p["api_sig"] = apiSig(for: p); p["format"] = "json"
         let data = try await post(p)
-        let obj = try JSONSerialization.jsonObject(with: data) as! [String:Any]
+        let any = try JSONSerialization.jsonObject(with: data)
+        guard let obj = any as? [String: Any] else { throw LastFMError(code: -2, message: "Resposta inválida") }
         if let ecode = obj["error"] as? Int, let msg = obj["message"] as? String {
             throw LastFMError(code: ecode, message: msg)
         }
-        guard let sess = obj["session"] as? [String:Any],
+        guard let sess = obj["session"] as? [String: Any],
               let sk = sess["key"] as? String,
               let name = sess["name"] as? String else {
             throw LastFMError(code: -2, message: "Sessão inválida")
@@ -94,16 +100,17 @@ final class LastFMClient: ObservableObject {
         let name = username ?? ""
         let p = ["method":"user.getRecentTracks","user":name,"api_key":key,"format":"json","limit":String(limit)]
         let data = try await post(p)
-        let obj = try JSONSerialization.jsonObject(with: data) as! [String:Any]
+        let any = try JSONSerialization.jsonObject(with: data)
+        guard let obj = any as? [String: Any] else { throw LastFMError(code: -3, message: "Resposta inválida") }
         if let ecode = obj["error"] as? Int, let msg = obj["message"] as? String {
             throw LastFMError(code: ecode, message: msg)
         }
-        return ((obj["recenttracks"] as? [String:Any])?["track"] as? [[String:Any]]) ?? []
+        return ((obj["recenttracks"] as? [String: Any])?["track"] as? [[String: Any]]) ?? []
     }
 
     func fetchArtworkURL(artist: String, track: String, album: String?) async -> URL? {
         do {
-            var p = ["method":"track.getInfo","api_key":key,"format":"json","artist":artist,"track":track]
+            let p = ["method":"track.getInfo","api_key":key,"format":"json","artist":artist,"track":track]
             let data = try await post(p)
             if let obj = try JSONSerialization.jsonObject(with: data) as? [String:Any],
                let trackObj = obj["track"] as? [String:Any],
@@ -114,7 +121,7 @@ final class LastFMClient: ObservableObject {
         } catch {}
         if let album = album, !album.isEmpty {
             do {
-                var p = ["method":"album.getInfo","api_key":key,"format":"json","artist":artist,"album":album]
+                let p = ["method":"album.getInfo","api_key":key,"format":"json","artist":artist,"album":album]
                 let data = try await post(p)
                 if let obj = try JSONSerialization.jsonObject(with: data) as? [String:Any],
                    let albumObj = obj["album"] as? [String:Any],
@@ -148,11 +155,17 @@ final class LastFMClient: ObservableObject {
     }
 
     private func post(_ params: [String:String]) async throws -> Data {
-        var req = URLRequest(url: URL(string: api)!)
+        guard var c = URLComponents(string: api) else {
+            throw LastFMError(code: -10, message: "URL da API inválida")
+        }
+        guard let url = c.url else {
+            throw LastFMError(code: -10, message: "URL da API inválida")
+        }
+        var req = URLRequest(url: url)
         req.httpMethod = "POST"
         req.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
         let allowed = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~")
-        let body = params.map { k,v in "\(k)=\((v.addingPercentEncoding(withAllowedCharacters: allowed) ?? ""))" }.joined(separator: "&")
+        let body = params.map { k, v in "\(k)=\((v.addingPercentEncoding(withAllowedCharacters: allowed) ?? ""))" }.joined(separator: "&")
         req.httpBody = body.data(using: .utf8)
         let (data, _) = try await URLSession.shared.data(for: req)
         return data

@@ -11,7 +11,7 @@ struct NowPlayingApp: App {
 final class AppDelegate: NSObject, NSApplicationDelegate {
     static weak var shared: AppDelegate?
 
-    private var statusItem: NSStatusItem!
+    private var statusItem: NSStatusItem?
     private let popover = NSPopover()
     private var globalHoverMonitor: Any?
     private var localHoverMonitor: Any?
@@ -32,7 +32,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         popover.contentViewController = NSHostingController(rootView: content)
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        if let button = statusItem.button {
+        if let button = statusItem?.button {
             button.image = NSImage(systemSymbolName: "music.note", accessibilityDescription: "Now Playing")
             button.target = self
             button.action = #selector(statusItemAction(_:))
@@ -48,7 +48,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func statusItemAction(_ sender: Any?) {
-        guard let button = statusItem.button else { return }
+        guard let button = statusItem?.button else { return }
         switch NSApp.currentEvent?.type {
         case .some(.mouseEntered):
             if !popover.isShown {
@@ -65,7 +65,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func handleHover(_ event: NSEvent) {
-        guard let button = statusItem.button, let window = button.window else { return }
+        guard let button = statusItem?.button, let window = button.window else { return }
         let mouse = NSEvent.mouseLocation
         let rInWin = button.convert(button.bounds, to: nil)
         let rOnScreen = NSRect(x: window.frame.origin.x + rInWin.origin.x,

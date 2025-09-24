@@ -21,7 +21,7 @@ final class MusicEventListener: ObservableObject {
             forName: NSNotification.Name("com.apple.Music.playerInfo"),
             object: nil,
             queue: .main
-        ) { note in
+        ) { [weak self] note in
             let info = note.userInfo ?? [:]
             let state = info["Player State"] as? String ?? ""
             let name  = info["Name"] as? String
