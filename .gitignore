@@ -1,0 +1,50 @@
+# Xcode
+#
+# Exclude build artifacts, user-specific files, and settings
+
+## Build generated
+build/
+DerivedData/
+
+## User settings
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+## Workspace
+*.xcworkspace/xcshareddata/*
+!default.xcworkspace/contents.xcworkspacedata
+
+## iOS / macOS specific
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+## Swift Package Manager
+.build/
+Packages/
+Package.pins
+Package.resolved
+
+## CocoaPods
+Pods/
+Podfile.lock
+
+## Carthage
+Carthage/Build/
+
+## Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+## Other
+*.moved-aside
+*.xcuserdatad
+*.xcassets/Assets.xcassets
