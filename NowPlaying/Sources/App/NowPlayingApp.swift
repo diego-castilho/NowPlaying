@@ -20,24 +20,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let core = CoreDataStack.shared
     private let lastfm = LastFMClient()
     private let artwork = ArtworkStore()
-    private let progress = PlaybackProgress()   // progresso compartilhado
-    private var monitor: NowPlayingMonitor?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.shared = self
         NSApp.setActivationPolicy(.accessory)
 
         let content = MenuBarPanelView(core: core, lastfm: lastfm, artwork: artwork)
-            .environmentObject(progress) // injeta no popover
 
         popover.behavior = .transient
         popover.contentSize = NSSize(width: 480, height: 260)
         popover.contentViewController = NSHostingController(rootView: content)
-
-        // Start Apple Music monitor and retain it
-        let monitor = NowPlayingMonitor(progress: progress)
-        monitor.start()
-        self.monitor = monitor
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = statusItem.button {
@@ -100,20 +92,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func closePopover() { popover.performClose(nil) }
 
-    // Abre a janela principal com o mesmo PlaybackProgress injetado
+    // Abre a janela principal
     func openMainWindow() {
         let hosting = NSHostingController(
             rootView: ContentView()
                 .environment(\.managedObjectContext, core.container.viewContext)
                 .environmentObject(lastfm)
                 .environmentObject(artwork)
-                .environmentObject(progress) // injeta na janela
         )
         let win = NSWindow(contentViewController: hosting)
         win.title = "Now Playing"
         win.styleMask = [.titled, .closable, .miniaturizable, .resizable]
         win.isReleasedWhenClosed = false
-        win.setContentSize(NSSize(width: 720, height: 520))
+        win.setContentSize(NSSize(width: 940, height: 620))
         win.center()
         win.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
@@ -125,7 +116,6 @@ struct MenuBarPanelView: View {
     let core: CoreDataStack
     @ObservedObject var lastfm: LastFMClient
     @ObservedObject var artwork: ArtworkStore
-    @EnvironmentObject var progress: PlaybackProgress
 
     init(core: CoreDataStack, lastfm: LastFMClient, artwork: ArtworkStore) {
         self.core = core; self.lastfm = lastfm; self.artwork = artwork
@@ -158,6 +148,6 @@ struct MenuBarPanelView: View {
             }
         }
         .padding(8)
-        .frame(width: 480)
+        .frame(width: 520)
     }
 }
