@@ -1,0 +1,1 @@
+// Arquivo removido - funcionalidade integrada no LaunchAtLoginManager.swift principal
