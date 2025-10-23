@@ -9,12 +9,18 @@
 /* Begin PBXBuildFile section */
 		9F4C57C72EA31C66000ED6A2 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4C57C62EA31C66000ED6A2 /* ServiceManagement.framework */; };
 		9F4C57C92EA31C6F000ED6A2 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4C57C82EA31C6F000ED6A2 /* CoreServices.framework */; };
+		9FA033532EA9A6C800055522 /* ARCHITECTURE.md in Resources */ = {isa = PBXBuildFile; fileRef = 9FA033522EA9A6C500055522 /* ARCHITECTURE.md */; };
+		9FA0335B2EA9A76B00055522 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 9FA0335A2EA9A76B00055522 /* CHANGELOG.md */; };
+		9FA0335D2EA9A7A500055522 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9FA0335C2EA9A7A500055522 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F3642A22E7E538B00D4E680 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F4C57C62EA31C66000ED6A2 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		9F4C57C82EA31C6F000ED6A2 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		9FA033522EA9A6C500055522 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ARCHITECTURE.md; sourceTree = "<group>"; };
+		9FA0335A2EA9A76B00055522 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		9FA0335C2EA9A7A500055522 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,6 +50,9 @@
 				9F3642A42E7E538B00D4E680 /* NowPlaying */,
 				9F3642A32E7E538B00D4E680 /* Products */,
 				9F4C57C52EA31C65000ED6A2 /* Frameworks */,
+				9FA033522EA9A6C500055522 /* ARCHITECTURE.md */,
+				9FA0335A2EA9A76B00055522 /* CHANGELOG.md */,
+				9FA0335C2EA9A7A500055522 /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +137,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FA0335D2EA9A7A500055522 /* .gitignore in Resources */,
+				9FA033532EA9A6C800055522 /* ARCHITECTURE.md in Resources */,
+				9FA0335B2EA9A76B00055522 /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,8 @@ xcuserdata/
 *.xcworkspace/xcshareddata/*
 !default.xcworkspace/contents.xcworkspacedata
 
-## iOS / macOS specific
+## iOS / macOS specific - Build artifacts adicionais
+*.app
 *.ipa
 *.dSYM.zip
 *.dSYM
@@ -48,3 +49,35 @@ fastlane/test_output
 *.moved-aside
 *.xcuserdatad
 *.xcassets/Assets.xcassets
+
+# Chaves privadas
+private_keys/
+*.key
+*.pem
+
+# Sparkle (se implementarmos auto-update)
+dsa_priv.pem
+
+# Logs de desenvolvimento
+logs/
+*.log
+
+# Dados temporários do Core Data
+*.sqlite-shm
+*.sqlite-wal
+
+# Secrets e Configurações Sensíveis
+Configuration/Secrets.xcconfig
+*.xcconfig
+!*.template.xcconfig
+
+# Configurações de usuário específicas
+Config.swift
+
+# Dados locais de desenvolvimento
+*.local
+
+# Certificados e provisioning
+*.mobileprovision
+*.p12
+*.cer
