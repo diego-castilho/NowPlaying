@@ -11,16 +11,11 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### 🚀 Próximas Versões
 
-**v0.9.3 - App Sandbox + Entitlements** (próxima)
-- Configuração de App Sandbox
-- Ajuste de entitlements
-- MusicKit migration
-- Permissões documentadas
-
-**v0.9.4 - Padrões Modernos Swift**
-- Swift Concurrency (async/await)
+**v0.9.4 - Padrões Modernos Swift** (próxima)
+- Swift Concurrency completo (async/await)
 - Actors para thread-safety
 - Structured concurrency
+- Task groups
 
 **v0.9.5 - Dependency Injection**
 - Container de DI
@@ -29,9 +24,161 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [0.9.3] - 2025-10-25
+
+### 🔐 Fase 1.3 - App Sandbox + Entitlements (CONCLUÍDA)
+
+Habilitação do App Sandbox com configuração mínima de entitlements, garantindo isolamento completo do sistema e preparação para distribuição na Mac App Store.
+
+#### Added
+
+**Entitlements de Segurança**
+- ✅ **App Sandbox Habilitado** (`com.apple.security.app-sandbox: true`)
+  - Isolamento completo do app
+  - Acesso restrito ao filesystem
+  - Proteção de dados do usuário
+  - Obrigatório para Mac App Store
+
+- ✅ **Keychain Access Groups** (`keychain-access-groups`)
+  - Array com `$(AppIdentifierPrefix)com.diegocastilho.NowPlaying`
+  - Garante acesso ao Keychain dentro do sandbox
+  - Permite compartilhamento entre app e extensões (futuro)
+
+#### Changed
+
+**NowPlaying.entitlements**
+- 🔄 **App Sandbox**: `false` → `true` (habilitado)
+- ➕ **Keychain Access Groups**: Adicionado array de grupos
+- ✅ **Mantidos** (necessários):
+  - `com.apple.security.network.client` (Last.fm API)
+  - `com.apple.security.automation.apple-events` (Apple Music)
+- ❌ **Removidos** (desnecessários/perigosos):
+  - `com.apple.security.cs.allow-jit`
+  - `com.apple.security.cs.allow-unsigned-executable-memory`
+  - `com.apple.security.cs.disable-executable-page-protection`
+  - `com.apple.security.network.server`
+  - `com.apple.security.device.audio-input`
+  - `com.apple.security.device.camera`
+  - `com.apple.security.personal-information.addressbook`
+  - `com.apple.security.personal-information.calendars`
+  - `com.apple.security.personal-information.location`
+  - `com.apple.security.personal-information.photos-library`
+
+**Total de Entitlements**: 14 → 5 (redução de 64%)
+
+#### Security
+
+**Isolamento do Sistema**
+- 🔐 **Sandbox Completo**: App isolado do resto do sistema
+- 🔐 **Princípio do Menor Privilégio**: Apenas permissões necessárias
+- 🔐 **Filesystem Restrito**: Acesso limitado ao container do app
+- 🔐 **Network Controlado**: Apenas outgoing connections (client)
+- 🔐 **Hardware Protegido**: Sem acesso a camera, microphone, etc
+- 🔐 **Dados Pessoais Protegidos**: Sem acesso a contacts, calendar, photos, location
+
+**Container Sandbox**
+- 📁 **Antes**: `~/Library/Application Support/NowPlaying/`
+- 📁 **Depois**: `~/Library/Containers/com.diegocastilho.NowPlaying/Data/Library/Application Support/NowPlaying/`
+- ✅ **Migração Automática**: macOS move dados existentes
+- ✅ **Core Data**: Funcionando no novo local
+- ✅ **Keychain**: Acessível via access groups
+
+**Permissões Removidas**
+- ❌ **JIT Compilation**: Não permitir código Just-In-Time
+- ❌ **Unsigned Memory**: Não permitir execução de memória não assinada
+- ❌ **Executable Page Protection**: Proteção mantida
+- ❌ **Network Server**: Não recebemos conexões
+- ❌ **Hardware Access**: Camera, microphone, USB, bluetooth
+- ❌ **Personal Data**: Contacts, calendar, photos, location
+
+#### Testing
+
+**Testes Funcionais Realizados (7/8 - 87.5% sucesso)**
+
+✅ **Teste 1 - App Inicia**
+- App compila e roda sem erros
+- Interface carrega corretamente
+- Menu bar icon aparece
+- Janela principal funciona
+
+✅ **Teste 2 - Migração de Dados**
+- Core Data migrado para container sandbox
+- Arquivo `Scrobble.sqlite` no novo local
+- Dados preservados
+
+✅ **Teste 3 - Autenticação Last.fm**
+- OAuth flow completo funciona
+- Network requests funcionando
+- Keychain access OK
+- Session key salva e carregada
+
+✅ **Teste 4 - Scrobbling** (CRÍTICO)
+- Apple Music events detectados
+- Now Playing atualiza
+- Scrobble enviado com sucesso
+- Logs criados no Core Data
+
+✅ **Teste 6 - Recent Tracks**
+- HTTP requests para Last.fm API
+- JSON parsing funciona
+- Lista de músicas carrega
+- Artwork aparece
+
+✅ **Teste 7 - Preferências**
+- Preferências abrem
+- Launch at Login funciona (macOS 13+)
+- Estado persiste
+
+✅ **Teste 8 - Menu Bar**
+- Hover automático funciona
+- Popover aparece
+- Botões funcionam
+- Menu de contexto OK
+
+⚠️ **Teste 5 - Histórico de Logs** (CONHECIDO)
+- UI pode não atualizar corretamente
+- Dados existem no Core Data
+- Não afeta funcionalidade de scrobbling
+- Investigar em v0.9.4
+
+#### Known Issues
+
+**v0.9.3**
+- ⚠️ **Histórico de Logs UI**: Interface de logs pode não atualizar (bug menor, não afeta scrobbling)
+- ℹ️ **Task Port Warning**: `Unable to obtain task name port` (normal com sandbox, pode ignorar)
+- ⚠️ **Fallback de Credenciais**: Ainda usando fallback hardcoded (será corrigido em v1.0.0)
+
+**Não Afetam Funcionalidade Core**:
+- Scrobbling funciona ✅
+- Autenticação funciona ✅
+- API Last.fm funciona ✅
+
+#### Infrastructure
+
+**Mac App Store Ready**
+- ✅ App Sandbox habilitado (requisito obrigatório)
+- ✅ Entitlements mínimos configurados
+- ✅ Sem permissões desnecessárias
+- 🔄 Code signing (próxima fase)
+- 🔄 Notarization (próxima fase)
+
+**Compatibilidade**
+- ✅ macOS 12.0+ (Monterey)
+- ✅ macOS 13.0+ (Ventura) - Launch at Login automático
+- ✅ macOS 14.0+ (Sonoma) - Testado
+- ✅ macOS 15.0+ (Sequoia) - Compatível
+
+**Commits desta versão**
+- 2 commits (checkpoint + feature)
+- ~50 linhas modificadas (entitlements)
+- 1 arquivo modificado (NowPlaying.entitlements)
+- 87.5% de testes bem-sucedidos
+
+---
+
 ## [0.9.2] - 2025-10-22
 
-### 🔐 Fase 1.2 - Modernização do Keychain
+### 🔐 Fase 1.2 - Modernização do Keychain (CONCLUÍDA)
 
 Sistema moderno e type-safe para gerenciamento de credenciais no Keychain, com migração automática de dados antigos e segurança aprimorada.
 
@@ -253,7 +400,7 @@ Sistema moderno e type-safe para gerenciamento de credenciais no Keychain, com m
 
 ## [0.9.1] - 2025-10-22
 
-### 🔧 Fase 1.1 - Sistema de Configuração Seguro
+### 🔧 Fase 1.1 - Sistema de Configuração Seguro (CONCLUÍDA)
 
 Sistema centralizado e hierárquico para gerenciamento de configurações do aplicativo, com validação automática e proteção de secrets.
 
@@ -567,7 +714,7 @@ Versão estável legada antes do início da modernização. Funcionalidades prin
 - ✅ **v0.9.0**: Preparação e snapshot
 - ✅ **v0.9.1**: Sistema de Configuração Seguro
 - ✅ **v0.9.2**: Modernização do Keychain
-- ⏳ **v0.9.3**: App Sandbox + Entitlements
+- ✅ **v0.9.3**: App Sandbox + Entitlements
 - ⏳ **v0.9.4**: Padrões Modernos Swift (async/await, actors)
 - ⏳ **v0.9.5**: Dependency Injection
 
@@ -592,15 +739,15 @@ Versão estável legada antes do início da modernização. Funcionalidades prin
 
 ## Progresso da Modernização
 ```
-FASE 1: FUNDAÇÃO E SEGURANÇA [████░░░░░░] 40%
+FASE 1: FUNDAÇÃO E SEGURANÇA [██████░░░░] 60%
 
 ✅ 1.1 Sistema de Configuração Seguro (v0.9.1)
 ✅ 1.2 Modernização do Keychain (v0.9.2)
-⬜ 1.3 App Sandbox + Entitlements (v0.9.3)
+✅ 1.3 App Sandbox + Entitlements (v0.9.3)
 ⬜ 1.4 Padrões Modernos Swift (v0.9.4)
 ⬜ 1.5 Dependency Injection (v0.9.5)
 
-PROJETO GERAL: [█░░░░░░░░░] 6.7% (2/30 atividades)
+PROJETO GERAL: [█░░░░░░░░░] 10% (3/30 atividades)
 ```
 
 ---
@@ -616,5 +763,5 @@ PROJETO GERAL: [█░░░░░░░░░] 6.7% (2/30 atividades)
 ---
 
 **Última Atualização**: 22 de outubro de 2025  
-**Versão Atual**: 0.9.2  
-**Próxima Release**: v0.9.3 (App Sandbox + Entitlements)
+**Versão Atual**: 0.9.3  
+**Próxima Release**: v0.9.4 (Padrões Modernos Swift)

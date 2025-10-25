@@ -1,66 +1,36 @@
 # NowPlaying
 
-<p align="center">
-  <img src="NowPlaying/Assets.xcassets/AppIcon.appiconset/NowPlaying.png" alt="NowPlaying Icon" width="200"/>
-</p>
+![NowPlaying Icon](NowPlaying/Resourses/Assets.xcassets/AppIcon.appiconset/NowPlaying.png)
 
-<p align="center">
-  <strong>Um aplicativo macOS moderno e elegante que automaticamente registra suas músicas do Apple Music no Last.fm</strong>
-</p>
+Um aplicativo macOS moderno e elegante que automaticamente registra suas músicas do Apple Music no Last.fm
 
-<p align="center">
-  <a href="#-recursos">Recursos</a> •
-  <a href="#-requisitos">Requisitos</a> •
-  <a href="#-instalação">Instalação</a> •
-  <a href="#-configuração">Configuração</a> •
-  <a href="#-desenvolvimento">Desenvolvimento</a> •
-  <a href="#-contribuindo">Contribuindo</a> •
-  <a href="#-licença">Licença</a>
-</p>
+[![Version](https://img.shields.io/badge/version-0.9.3-blue.svg)](https://github.com/diego-castilho/NowPlaying/releases/tag/v0.9.3)
+[![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
+[![Platform](https://img.shields.io/badge/platform-macOS%2012.0+-lightgrey.svg)](https://www.apple.com/macos/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Progress](https://img.shields.io/badge/progress-10%25-yellow.svg)](CHANGELOG.md)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/macOS-12.0+-blue.svg" alt="macOS 12.0+"/>
-  <img src="https://img.shields.io/badge/Swift-5.9+-orange.svg" alt="Swift 5.9+"/>
-  <img src="https://img.shields.io/badge/Xcode-15.6+-blue.svg" alt="Xcode 15.6+"/>
-  <img src="https://img.shields.io/badge/version-0.9.2-blue.svg" alt="Version"/>
-  <img src="https://img.shields.io/badge/moderniza%C3%A7%C3%A3o-6.7%25-yellow.svg" alt="Progress"/>
-  <img src="https://img.shields.io/badge/release-v1.0%20Q1%202026-orange.svg" alt="Release"/>
-</p>
-
----
-
-## 📖 Sobre o Projeto
-
-**NowPlaying** é um aplicativo nativo para macOS que faz scrobble automático das músicas que você ouve no Apple Music para sua conta do Last.fm. Com sistema robusto de segurança e interface moderna, NowPlaying oferece uma experiência elegante e perfeitamente integrada ao macOS.
-
-### ✨ Destaques
-
-- 🔒 **Seguro**: Credenciais protegidas no Keychain com sistema type-safe
-- 🚀 **Automático**: Scrobble seguindo regras oficiais do Last.fm
-- 🎯 **Menu Bar**: Acesso rápido via barra de menu com hover inteligente
-- 📊 **Histórico Completo**: Logs detalhados com filtros e busca
-- ⚙️ **Launch at Login**: Inicia automaticamente no macOS 13+
-- 🌐 **API Moderna**: Cliente Last.fm robusto com retry automático
+[Recursos](#-recursos) • [Desenvolvimento](#-desenvolvimento) • [Requisitos do Sistema](#-requisitos-do-sistema) • [Roadmap](#-roadmap)
 
 ---
 
 ## ⚠️ STATUS DO PROJETO
 
-> **🚧 EM DESENVOLVIMENTO ATIVO - VERSÃO 0.9.2**
+> **🚧 EM DESENVOLVIMENTO ATIVO - VERSÃO 0.9.3**
 >
 > O projeto está em **modernização completa** para a versão 1.0.
 >
 > **Branch atual**: `feature/phase-1-security`  
-> **Progresso**: 6.7% (2/30 atividades concluídas)
+> **Progresso**: 10% (3/30 atividades concluídas)
 
 ### 📊 Progresso das Fases
 ```
-FASE 1: FUNDAÇÃO E SEGURANÇA [████░░░░░░] 40%
+FASE 1: FUNDAÇÃO E SEGURANÇA [██████░░░░] 60%
 
 ✅ v0.9.1 - Sistema de Configuração Seguro
 ✅ v0.9.2 - Modernização do Keychain
-🔄 v0.9.3 - App Sandbox + Entitlements (PRÓXIMA)
-⏳ v0.9.4 - Padrões Modernos Swift
+✅ v0.9.3 - App Sandbox + Entitlements
+⏳ v0.9.4 - Padrões Modernos Swift (PRÓXIMA)
 ⏳ v0.9.5 - Dependency Injection
 ⏳ Fase 2 - Interface Liquid Glass
 ⏳ Fase 3 - Widget de Desktop
@@ -70,294 +40,410 @@ FASE 1: FUNDAÇÃO E SEGURANÇA [████░░░░░░] 40%
 🎯 v1.0.0 - Release Final (Q1 2026)
 ```
 
-📖 **Documentação Completa**:
-- [CHANGELOG.md](CHANGELOG.md) - Histórico detalhado de versões
-- [ARCHITECTURE.md](ARCHITECTURE.md) - Documentação técnica da arquitetura
+**Documentação Completa**:
+- 📋 [CHANGELOG.md](Documentation/CHANGELOG.md) - Histórico detalhado de todas as versões
+- 🏗️ [ARCHITECTURE.md](Documentation/ARCHITECTURE.md) - Documentação técnica da arquitetura
+
+---
+
+## 📖 Sobre o Projeto
+
+NowPlaying é um aplicativo nativo para macOS que faz scrobble automático das músicas que você ouve no Apple Music para sua conta do Last.fm. Com uma interface moderna usando design Liquid Glass da Apple e suporte para Widgets de Desktop, NowPlaying oferece uma experiência elegante e integrada ao macOS.
+
+### ✨ Destaques
+
+- 🎨 **Design Liquid Glass**: Interface moderna seguindo as últimas diretrizes da Apple
+- 🔒 **Seguro**: App Sandbox habilitado, credenciais protegidas no Keychain
+- 📱 **Widget de Desktop**: Veja a música atual direto no seu Desktop
+- 🎯 **Menu Bar**: Acesso rápido via barra de menu com hover inteligente
+- 📊 **Estatísticas**: Acompanhe suas músicas mais ouvidas e padrões de escuta
+- 🌐 **Automático**: Funciona em segundo plano sem necessidade de interação
+- 🇧🇷 **Multilíngue**: Suporte para Português, Inglês e Espanhol
 
 ---
 
 ## 🎯 Recursos
 
-### ✅ Funcionalidades Principais
+### 🎵 Scrobbling
 
-**Scrobbling Automático**
-- Scrobble automático seguindo regras do Last.fm (50% ou 4 min)
-- Atualização "Now Playing" em tempo real
-- Suporte completo para artwork de álbuns
-- Retry automático em caso de falha
-- Histórico persistente com Core Data
+- ✅ Scrobble automático seguindo regras do Last.fm (50% da música ou 4 minutos)
+- ✅ Atualização "Now Playing" em tempo real
+- ✅ Suporte para álbuns e artwork
+- ✅ Retry automático em caso de falha
+- ✅ Histórico completo de scrobbles
 
-**Segurança e Configuração** *(novo em v0.9.1 e v0.9.2)*
-- Sistema moderno de Keychain type-safe
-- Migração automática de dados antigos
-- ConfigurationManager centralizado
-- Error handling robusto
-- Logs seguros (não expõem credenciais)
+### 🎨 Interface
 
-**Interface**
-- Menu Bar com popover hover automático
-- Janela principal com histórico de músicas
-- Logs filtráveis (tipo, status, busca)
-- Dark Mode completo
-- Exibição de capa atual
+- 🎨 Design Liquid Glass com materiais translúcidos
+- 🖼️ Exibição de capas de álbum em alta qualidade
+- 🌓 Suporte completo para Dark Mode
+- ⚡ Animações fluidas e naturais
+- 🎭 Hover effects e micro-interações
 
-**Sistema**
-- Launch at Login (macOS 13+)
-- Integração com Apple Music via notificações
-- OAuth completo do Last.fm
-- Gerenciamento de sessão no Keychain
+### 🎯 Menu Bar
 
-### 🔄 Em Desenvolvimento
+- 🖱️ Hover automático para ver música atual
+- 🎵 Popover compacto com informações essenciais
+- ⚡ Acesso rápido a controles e preferências
+- 🔔 Indicadores visuais de status
 
-- Design Liquid Glass (Fase 2)
-- Widget de Desktop (Fase 3)
-- Estatísticas avançadas (Fase 4)
-- Gráficos de escuta (Fase 4)
-- Testes unitários (Fase 5)
+### 📱 Widget de Desktop
+
+- 📐 4 tamanhos disponíveis (Small, Medium, Large, Extra Large)
+- 🖼️ Exibição de artwork e informações da música
+- 🔄 Atualização automática e eficiente
+- 🎨 Design consistente com o app principal
+
+### 📊 Histórico e Estatísticas
+
+- 📋 Histórico completo de músicas tocadas
+- 🔍 Busca e filtros avançados
+- 📊 Estatísticas e insights de escuta
+- 🗂️ Visualização de logs de scrobble
+- 🎨 Layout moderno com sidebar
+
+### ⚙️ Preferências
+
+- 🚀 Iniciar automaticamente no login
+- 🎨 Customização de aparência
+- 🔔 Configuração de notificações
+- 🔐 Gerenciamento de conta Last.fm
+- ⚙️ Opções avançadas de scrobbling
+
+---
+
+## 🔐 Segurança
+
+### v0.9.3 - App Sandbox Habilitado
+
+- ✅ **App Sandbox Completo**: Isolamento do sistema operacional
+- ✅ **Entitlements Mínimos**: Apenas 5 permissões necessárias
+- ✅ **Keychain Seguro**: Credenciais protegidas com type-safety
+- ✅ **Network Controlado**: Apenas comunicação HTTPS com Last.fm
+- ✅ **Zero Acesso a Hardware**: Camera, microphone, USB desabilitados
+- ✅ **Dados Pessoais Protegidos**: Sem acesso a contacts, calendar, photos, location
+
+**Permissões Utilizadas**:
+1. `app-sandbox` - Isolamento completo
+2. `network.client` - Comunicação Last.fm API
+3. `automation.apple-events` - Integração Apple Music
+4. `keychain-access-groups` - Acesso seguro ao Keychain
+5. `application-identifier` - Identificador único (automático)
+
+**Mac App Store Ready**: O app está preparado para distribuição na Mac App Store.
 
 ---
 
 ## 💻 Requisitos do Sistema
 
-### Para Usuários
+### Mínimos
 
 - **macOS**: 12.0 (Monterey) ou superior
-- **Apple Music**: Instalado e funcionando
+- **Apple Music**: Instalado e com músicas
 - **Last.fm**: Conta gratuita ([criar aqui](https://www.last.fm/join))
-- **Espaço**: ~50 MB
+- **Xcode**: 15.6+ (apenas para desenvolvimento)
 
-### Para Desenvolvedores
+### Recomendados
 
-- **macOS**: 12.0+ (recomendado 14.0+ Sonoma)
-- **Xcode**: 15.6+
-- **Swift**: 5.9+
-- **Git**: Para clonar o repositório
-- **Last.fm API Key**: [Obter credenciais](https://www.last.fm/api/account/create)
+- **macOS**: 14.0 (Sonoma) ou superior para melhor experiência
+- **Memória**: 8 GB RAM
+- **Espaço**: 100 MB livres
 
 ---
 
 ## 🚀 Instalação
 
-### Opção 1: Download Direto
+### Para Usuários
 
-> 🚧 Builds pré-compilados estarão disponíveis na v1.0
+> ⚠️ **Em desenvolvimento**: Binários de release ainda não disponíveis.
+>
+> A versão 1.0 será distribuída via Mac App Store (Q1 2026).
 
-### Opção 2: Compilar do Código-Fonte
+### Para Desenvolvedores
+
+#### 1. Clone o Repositório
 ```bash
-# 1. Clonar repositório
 git clone https://github.com/diego-castilho/NowPlaying.git
 cd NowPlaying
+```
 
-# 2. Branch de desenvolvimento
+#### 2. Configurar Branch de Desenvolvimento
+```bash
+# Mudar para branch de desenvolvimento
 git checkout feature/phase-1-security
 
-# 3. Configurar credenciais Last.fm
-cd Configuration
-cp Secrets.template.xcconfig Secrets.xcconfig
-nano Secrets.xcconfig  # Adicione suas credenciais
+# Ver status
+git status
+```
 
-# 4. Abrir e compilar
+#### 3. Configurar Credenciais Last.fm
+
+**Criar conta de desenvolvedor**:
+1. Acesse: https://www.last.fm/api/account/create
+2. Crie uma API account
+3. Anote o **API Key** e **Shared Secret**
+
+**Configurar no projeto**:
+```bash
+# Copiar template
+cp Configuration/Secrets.template.xcconfig Configuration/Secrets.xcconfig
+
+# Editar com suas credenciais
+nano Configuration/Secrets.xcconfig
+```
+
+**Adicione suas credenciais**:
+```
+LASTFM_API_KEY = sua_api_key_aqui
+LASTFM_SHARED_SECRET = seu_shared_secret_aqui
+```
+
+**Importante**: `Secrets.xcconfig` já está no `.gitignore` e não será commitado.
+
+#### 4. Abrir no Xcode
+```bash
 open NowPlaying.xcodeproj
-# No Xcode: Product → Run (⌘R)
+```
+
+#### 5. Configurar Signing
+
+No Xcode:
+1. Selecione o projeto **NowPlaying** no Navigator
+2. Selecione o target **NowPlaying**
+3. Vá para **Signing & Capabilities**
+4. Configure seu **Team** (Apple Developer Account)
+
+#### 6. Build e Run
+```
+⌘R - Run
+⌘B - Build
+⌘⇧K - Clean Build Folder
 ```
 
 ---
 
-## ⚙️ Configuração
-
-### Primeira Execução
-
-1. Abra o **NowPlaying**
-2. Clique em **"Conectar ao Last.fm"**
-3. Autorize no navegador
-4. Volte ao app e clique **"Já autorizei — Concluir login"**
-5. ✅ Scrobble automático ativado!
-
-### Launch at Login (Opcional)
-
-**macOS 13+**: 
-- Preferências → Ativar "Iniciar no login" ✅
-
-**macOS 12 e anteriores**:
-- Preferências do Sistema → Usuários e Grupos → Itens de Login
-- Adicionar NowPlaying manualmente
-
-### Permissões
-
-- ✅ **Apple Events**: Acesso ao Apple Music (obrigatório)
-- ✅ **Rede**: Comunicação com Last.fm (obrigatório)
-
----
-
-## 🛠️ Desenvolvimento
+## 📚 Desenvolvimento
 
 ### Estrutura do Projeto
 ```
 NowPlaying/
 ├── Sources/
-│   ├── App/                      # Interface SwiftUI
-│   │   ├── NowPlayingApp.swift
-│   │   ├── ContentView.swift
-│   │   ├── MenuBarPanelView.swift
-│   │   ├── LogListView.swift
-│   │   └── PreferencesView.swift
+│   ├── App/                    # Presentation Layer
+│   │   ├── Views/              # SwiftUI Views
+│   │   ├── Components/         # Componentes reutilizáveis
+│   │   └── Managers/           # UI-specific managers
 │   │
-│   └── Core/                     # Lógica de negócio
-│       ├── Models/
-│       ├── Services/
-│       │   ├── LastFMClient.swift
-│       │   ├── MusicEventListener.swift
-│       │   └── ScrobbleManager.swift
-│       ├── Configuration/
-│       │   └── ConfigurationManager.swift
-│       ├── Keychain/             # v0.9.2
-│       │   ├── KeychainService.swift
-│       │   ├── KeychainItem.swift
-│       │   └── KeychainError.swift
-│       └── Persistence/
-│           └── CoreDataStack.swift
+│   └── Core/                   # Business Logic + Data
+│       ├── Models/             # Domain models
+│       ├── Services/           # Business logic services
+│       ├── Configuration/      # Config management
+│       ├── Keychain/           # Secure storage
+│       ├── Persistence/        # Core Data
+│       └── Utilities/          # Helpers
 │
-├── Configuration/
+├── Configuration/              # Build configuration
 │   ├── Secrets.template.xcconfig
-│   └── Secrets.xcconfig          # Não versionado
+│   └── Secrets.xcconfig        # Não versionado
 │
-└── Documentation/
-    ├── CHANGELOG.md
-    ├── ARCHITECTURE.md
-    └── README.md
+├── Resources/                  # Assets
+│   └── Assets.xcassets/
+│
+├── Documentation/              # Docs
+│   ├── CHANGELOG.md
+│   ├── ARCHITECTURE.md
+│   └── README.md
+│
+└── NowPlaying.xcodeproj/
 ```
 
-📖 Veja [ARCHITECTURE.md](ARCHITECTURE.md) para documentação técnica completa.
+Veja [ARCHITECTURE.md](Documentation/ARCHITECTURE.md) para documentação técnica completa.
 
 ### Tecnologias
 
-- **SwiftUI**: Interface moderna e reativa
-- **Core Data**: Persistência de logs
-- **Keychain Services**: Armazenamento seguro (v0.9.2)
+- **SwiftUI**: Interface declarativa
+- **AppKit**: Menu bar e integração macOS
 - **Combine**: Programação reativa
-- **Distributed Notifications**: Integração Apple Music
-- **URLSession**: Comunicação HTTP
+- **Core Data**: Persistência local
+- **Keychain Services**: Armazenamento seguro
+- **URLSession**: Networking
+- **ServiceManagement**: Launch at Login (macOS 13+)
+- **CryptoKit**: Criptografia (MD5 para API signatures)
 
----
-
-## 🧪 Testes
-
-### Status (v0.9.2)
-- **Cobertura**: 0% (testes planejados para Fase 5)
-- **Validação**: Manual ✅
-
-### Futuro (Fase 5)
+### Git Workflow
 ```bash
-# Todos os testes
-xcodebuild test -scheme NowPlaying
+# Branch principal de desenvolvimento
+git checkout feature/phase-1-security
 
-# Unitários
-xcodebuild test -scheme NowPlaying -only-testing:NowPlayingTests
+# Ver progresso
+git log --oneline --graph
 
-# UI
-xcodebuild test -scheme NowPlaying -only-testing:NowPlayingUITests
+# Ver tags de versão
+git tag
 ```
 
----
+### Convenções de Commit
 
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas!
-
-### Como Contribuir
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/MinhaFeature`)
-3. Commit suas mudanças (`git commit -m 'feat: adiciona MinhaFeature'`)
-4. Push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
-
-### Diretrizes
-
-- Siga o [Swift Style Guide](https://google.github.io/swift/)
-- Use commits descritivos ([Conventional Commits](https://www.conventionalcommits.org/))
-- Atualize documentação relevante
-- Certifique-se de que compila sem warnings
-
----
-
-## 📚 Documentação
-
-- **[CHANGELOG.md](CHANGELOG.md)**: Histórico de versões e mudanças
-- **[ARCHITECTURE.md](ARCHITECTURE.md)**: Arquitetura técnica detalhada
-- **[Last.fm API](https://www.last.fm/api)**: Documentação oficial da API
-
----
-
-## 🐛 Problemas Conhecidos
-
-### v0.9.2
-- ⚠️ Fallback hardcoded temporário (será removido em v1.0.0)
-- ⚠️ Sem testes unitários (Fase 5)
-- ⚠️ App Sandbox desabilitado (v0.9.3)
-- ⚠️ Interface básica (Fase 2 implementará Liquid Glass)
-
-Veja [CHANGELOG.md](CHANGELOG.md) para lista completa.
+Seguimos [Conventional Commits](https://www.conventionalcommits.org/):
+```
+feat: nova funcionalidade
+fix: correção de bug
+docs: documentação
+refactor: refatoração
+test: testes
+chore: tarefas diversas
+security: melhorias de segurança
+```
 
 ---
 
 ## 🗺️ Roadmap
 
-### v0.9.x - Fundação (Q4 2025 - Q1 2026)
-- ✅ v0.9.1: Sistema de Configuração
-- ✅ v0.9.2: Keychain Moderno
-- ⏳ v0.9.3: App Sandbox
-- ⏳ v0.9.4: Swift Moderno
-- ⏳ v0.9.5: Dependency Injection
+### v0.9.4 - Padrões Modernos Swift (Próxima)
 
-### v1.0.0 - Release (Q1 2026)
-- Fase 2: Interface Liquid Glass
-- Fase 3: Widget de Desktop
-- Fase 4: Recursos Avançados
-- Fase 5: Qualidade e Polish
-- Fase 6: Distribuição
+- Swift Concurrency completo (async/await)
+- Actors para thread-safety
+- Structured concurrency
+- Task groups
+- MainActor optimization
 
-### v1.1.0+ - Expansão (Q2-Q3 2026)
-- Integração Spotify
-- Control Center widget
-- Apple Watch
+### v0.9.5 - Dependency Injection
+
+- DI container
+- Protocol-oriented refactoring
+- Testabilidade aprimorada
+
+### Fase 2: Interface Liquid Glass (v0.9.6 - v0.9.10)
+
+- Design System completo
+- Refatoração de segurança (App Sandbox)
+
+### Fase 3: Widget de Desktop (v0.9.11 - v0.9.14)
+
+- Widget de Desktop (4 tamanhos)
+
+### Fase 4: Recursos Avançados (v0.9.15 - v0.9.20)
+
+- Estatísticas avançadas
+- Gráficos de escuta com Swift Charts
+- Sistema de notificações
+
+### Fase 5: Qualidade e Polish (v0.9.21 - v0.9.26)
+
+- Testes unitários (80%+ cobertura)
+- Testes de UI
+- Performance optimization
+- Accessibility
+
+### Fase 6: Distribuição (v0.9.27 - v1.0.0)
+
+- Code signing
+- Notarization
+- Mac App Store submission
+
+### v1.0.0 - Release Final (Q1 2026)
+
+- Release completa
+- Disponível na Mac App Store
+- Documentação completa
+- Tutoriais em vídeo
+
+### Futuro (v1.1+)
+
+- Integração com Spotify
+- Suporte para outros serviços de streaming
+- Modo offline com sincronização posterior
 - Themes customizáveis
-- Shortcuts
+- Shortcuts do macOS
+- Control Center widget
+- Integração com Apple Watch
+- Compartilhamento social
+- Badges de conquistas
+- Import/Export de dados
+- API para desenvolvedores
 
 ---
 
-## 📝 Licença
+## 🐛 Problemas Conhecidos
 
-Este projeto está sob a licença MIT. Veja [LICENSE](LICENSE) para detalhes.
+### v0.9.3
+
+- ⚠️ **Histórico de Logs UI**: Interface pode não atualizar corretamente (não afeta scrobbling)
+- ⚠️ **Credenciais com fallback**: ConfigurationManager usa fallback hardcoded (será removido em v1.0.0)
+- ⚠️ **Testes unitários ausentes**: Testes serão adicionados na Fase 5
+- ⚠️ **Interface básica**: Design Liquid Glass será implementado na Fase 2
+
+Veja [CHANGELOG.md](Documentation/CHANGELOG.md) para lista completa de débitos técnicos.
 
 ---
 
-## 👤 Autor
+## 🤝 Contribuindo
 
-**Diego Castilho**
-- GitHub: [@diego-castilho](https://github.com/diego-castilho)
+> **🚧 Contribuições não aceitas no momento**
+>
+> O projeto está em modernização ativa. Contribuições serão bem-vindas após v1.0.0.
+
+### Para o Futuro (v1.0+)
+
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'feat: add amazing feature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ---
 
 ## 🙏 Agradecimentos
 
-- [Last.fm](https://www.last.fm/) pela API
-- Apple pelo macOS e Swift
-- Comunidade open-source
+- **Last.fm**: Pela API incrível e documentação
+- **Apple**: Pelo macOS e frameworks excelentes
+- **Comunidade Swift**: Pelas bibliotecas e recursos
 
 ---
 
-## 📞 Suporte
+## 📞 Contato
 
-- **Issues**: [GitHub Issues](https://github.com/diego-castilho/NowPlaying/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/diego-castilho/NowPlaying/discussions)
-
----
-
-⭐ **Se este projeto te ajudou, considere dar uma estrela no GitHub!**
+- **GitHub**: [@diego-castilho](https://github.com/diego-castilho)
+- **Issues**: [Reportar problema](https://github.com/diego-castilho/NowPlaying/issues)
+- **Last.fm API**: [Documentação](https://www.last.fm/api)
 
 ---
 
-**Última Atualização**: 22 de outubro de 2025  
-**Versão**: 0.9.2  
-**Status**: 🚧 Em Desenvolvimento Ativo
+## 📊 Status do Projeto
+```
+Versão Atual:    0.9.3
+Progresso:       10% (3/30 atividades)
+Fase Atual:      Fase 1 - Fundação e Segurança (60%)
+Próxima Release: v0.9.4 (Padrões Modernos Swift)
+Release Final:   v1.0.0 (Q1 2026)
+
+Funcionalidade Core:  ████████░░ 80% (funcional)
+Interface:            ████░░░░░░ 40% (básica)
+Features Avançadas:   ░░░░░░░░░░  0% (planejadas)
+Testes:               ░░░░░░░░░░  0% (Fase 5)
+Documentação:         ████████░░ 80% (boa)
+Segurança:            ████████░░ 80% (robusta)
+```
+
+---
+
+## 🎯 Marcos do Projeto
+
+- ✅ **2025-10-22**: v0.9.1 - Sistema de Configuração Seguro
+- ✅ **2025-10-22**: v0.9.2 - Modernização do Keychain
+- ✅ **2025-10-22**: v0.9.3 - App Sandbox + Entitlements
+- ⏳ **2025-10-25**: v0.9.4 - Padrões Modernos Swift (estimado)
+- ⏳ **2025-10-30**: v0.9.5 - Dependency Injection (estimado)
+- ⏳ **2025-11-10**: Fase 1 Completa (estimado)
+- 🎯 **2026-02-01**: v1.0.0 - Release Final (target)
+
+---
+
+**Desenvolvido com ❤️ por Diego Castilho**
+
+Veja o [CHANGELOG.md](Documentation/CHANGELOG.md) para histórico completo de versões.

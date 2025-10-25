@@ -201,11 +201,11 @@ extension KeychainItem {
     /// API Key do Last.fm (temporário - será migrado para configuração)
     /// - Parameter apiKey: API Key
     /// - Returns: KeychainItem configurado
-    static func lastFMAPIKey(apiKey: String) -> KeychainItem {
+    static func lastFMAPIKey(value: String) -> KeychainItem {
         KeychainItem(
             account: "lastfm_api_key",
-            service: defaultService,
-            value: apiKey,
+            service: Bundle.main.bundleIdentifier ?? "com.diegocastilho.NowPlaying",
+            value: value,
             accessibility: .whenUnlocked
         )
     }
@@ -213,11 +213,11 @@ extension KeychainItem {
     /// Shared Secret do Last.fm (temporário - será migrado para configuração)
     /// - Parameter sharedSecret: Shared Secret
     /// - Returns: KeychainItem configurado
-    static func lastFMSharedSecret(sharedSecret: String) -> KeychainItem {
+    static func lastFMSharedSecret(value: String) -> KeychainItem {
         KeychainItem(
             account: "lastfm_shared_secret",
-            service: defaultService,
-            value: sharedSecret,
+            service: Bundle.main.bundleIdentifier ?? "com.diegocastilho.NowPlaying",
+            value: value,
             accessibility: .whenUnlocked
         )
     }
