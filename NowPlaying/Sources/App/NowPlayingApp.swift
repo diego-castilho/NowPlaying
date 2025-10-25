@@ -27,6 +27,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private let launchManager = LaunchAtLoginManager.shared
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Validar configurações na inicialização
+        do {
+            try ConfigurationManager.shared.validate()
+            print(ConfigurationManager.shared.configurationSummary())
+        } catch {
+            // Exibir alerta se configuração estiver inválida
+            let alert = NSAlert()
+            alert.messageText = "Erro de Configuração"
+            alert.informativeText = """
+        Não foi possível carregar as configurações do aplicativo.
+        
+        Erro: \(error.localizedDescription)
+        
+        Por favor, verifique se o arquivo Secrets.xcconfig está configurado corretamente.
+        """
+            alert.alertStyle = .critical
+            alert.addButton(withTitle: "Sair")
+            alert.runModal()
+            NSApp.terminate(nil)
+            return
+        }
+        
         AppDelegate.shared = self
         NSApp.setActivationPolicy(.accessory) // Começa como accessory
         

@@ -32,5 +32,11 @@
 	<array>
 		<string>identifier &quot;$(PRODUCT_BUNDLE_IDENTIFIER)&quot; and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = &quot;$(AppIdentifierPrefix)&quot;</string>
 	</array>
+    <key>LASTFM_API_KEY</key>
+    <string>$(LASTFM_API_KEY)</string>
+    <key>LASTFM_SHARED_SECRET</key>
+    <string>$(LASTFM_SHARED_SECRET)</string>
+    <key>LASTFM_API_ENDPOINT</key>
+    <string>$(LASTFM_API_ENDPOINT)</string>
 </dict>
 </plist>
