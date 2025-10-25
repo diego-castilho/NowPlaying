@@ -1,6 +1,6 @@
 # NowPlaying
 
-![NowPlaying Icon](NowPlaying/Resourses/Assets.xcassets/AppIcon.appiconset/NowPlaying.png)
+![NowPlaying Icon](NowPlaying/Resources/Assets.xcassets/AppIcon.appiconset/NowPlaying.pnggit)
 
 Um aplicativo macOS moderno e elegante que automaticamente registra suas músicas do Apple Music no Last.fm
 
