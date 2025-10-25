@@ -35,6 +35,10 @@
 		9FD40AE82EAAF9E400F86137 /* MusicEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD40ACD2EAAF9E400F86137 /* MusicEventListener.swift */; };
 		9FD40AE92EAAF9E400F86137 /* ScrobbleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD40ACE2EAAF9E400F86137 /* ScrobbleManager.swift */; };
 		9FD40AEB2EAAF9F900F86137 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD40AEA2EAAF9F900F86137 /* ConfigurationManager.swift */; };
+		9FD40B1E2EAD268700F86137 /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD40B1D2EAD268700F86137 /* KeychainError.swift */; };
+		9FD40B202EAD272200F86137 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD40B1F2EAD272200F86137 /* KeychainItem.swift */; };
+		9FD40B222EAD278B00F86137 /* KeychainServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD40B212EAD278B00F86137 /* KeychainServiceProtocol.swift */; };
+		9FD40B242EAD281B00F86137 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD40B232EAD281B00F86137 /* KeychainService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +73,10 @@
 		9FD40AD32EAAF9E400F86137 /* NowPlaying.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NowPlaying.entitlements; sourceTree = "<group>"; };
 		9FD40AEA2EAAF9F900F86137 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
 		9FD40AEC2EAC8DF100F86137 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		9FD40B1D2EAD268700F86137 /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
+		9FD40B1F2EAD272200F86137 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		9FD40B212EAD278B00F86137 /* KeychainServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceProtocol.swift; sourceTree = "<group>"; };
+		9FD40B232EAD281B00F86137 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +99,10 @@
 				9FA033522EA9A6C500055522 /* ARCHITECTURE.md */,
 				9FA0335A2EA9A76B00055522 /* CHANGELOG.md */,
 				9FA033602EA9ABD000055522 /* README.md */,
+				9FA033632EA9B9EA00055522 /* Configuration */,
 				9F4C57C52EA31C65000ED6A2 /* Frameworks */,
 				9FD40AD42EAAF9E400F86137 /* NowPlaying */,
 				9F3642A32E7E538B00D4E680 /* Products */,
-				9FA033632EA9B9EA00055522 /* Configuration */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,13 +150,17 @@
 		9FD40ACF2EAAF9E400F86137 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				9FD40AEA2EAAF9F900F86137 /* ConfigurationManager.swift */,
 				9FD40AC52EAAF9E400F86137 /* ArtworkStore.swift */,
 				9FD40AC62EAAF9E400F86137 /* Config.swift */,
+				9FD40AEA2EAAF9F900F86137 /* ConfigurationManager.swift */,
 				9FD40AC72EAAF9E400F86137 /* CoreDataStack.swift */,
 				9FD40AC82EAAF9E400F86137 /* Crypto+MD5.swift */,
 				9FD40AC92EAAF9E400F86137 /* Date+Fmt.swift */,
+				9FD40B1D2EAD268700F86137 /* KeychainError.swift */,
 				9FD40ACA2EAAF9E400F86137 /* KeychainHelper.swift */,
+				9FD40B1F2EAD272200F86137 /* KeychainItem.swift */,
+				9FD40B232EAD281B00F86137 /* KeychainService.swift */,
+				9FD40B212EAD278B00F86137 /* KeychainServiceProtocol.swift */,
 				9FD40ACB2EAAF9E400F86137 /* LastFMClient.swift */,
 				9FD40ACC2EAAF9E400F86137 /* Models.swift */,
 				9FD40ACD2EAAF9E400F86137 /* MusicEventListener.swift */,
@@ -256,10 +268,12 @@
 				9FA033612EA9ABD300055522 /* README.md in Sources */,
 				9FD40AD72EAAF9E400F86137 /* ArtworkWidgetView.swift in Sources */,
 				9FD40AD82EAAF9E400F86137 /* ContentView.swift in Sources */,
+				9FD40B242EAD281B00F86137 /* KeychainService.swift in Sources */,
 				9FD40AD92EAAF9E400F86137 /* LaunchAtLoginManager.swift in Sources */,
 				9FD40ADA2EAAF9E400F86137 /* LaunchAtLoginManagerSimplified.swift in Sources */,
 				9FD40ADB2EAAF9E400F86137 /* LaunchAtLoginTestInterface.swift in Sources */,
 				9FD40ADC2EAAF9E400F86137 /* LogListView.swift in Sources */,
+				9FD40B202EAD272200F86137 /* KeychainItem.swift in Sources */,
 				9FD40ADD2EAAF9E400F86137 /* NowPlayingApp.swift in Sources */,
 				9FD40ADE2EAAF9E400F86137 /* PreferencesView.swift in Sources */,
 				9FD40ADF2EAAF9E400F86137 /* RecentTracksView.swift in Sources */,
@@ -273,6 +287,8 @@
 				9FD40AE72EAAF9E400F86137 /* Models.swift in Sources */,
 				9FD40AEB2EAAF9F900F86137 /* ConfigurationManager.swift in Sources */,
 				9FD40AE82EAAF9E400F86137 /* MusicEventListener.swift in Sources */,
+				9FD40B1E2EAD268700F86137 /* KeychainError.swift in Sources */,
+				9FD40B222EAD278B00F86137 /* KeychainServiceProtocol.swift in Sources */,
 				9FD40AE92EAAF9E400F86137 /* ScrobbleManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

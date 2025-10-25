@@ -4,6 +4,9 @@
 //
 //  Implementação moderna do serviço de Keychain
 //
+//  Created by Diego Castilho on 25/10/25
+//  Copyright © 2025 Diego Castilho. All rights reserved.
+//
 
 import Foundation
 import Security

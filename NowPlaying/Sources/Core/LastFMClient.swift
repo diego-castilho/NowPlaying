@@ -17,8 +17,51 @@ final class LastFMClient: ObservableObject {
     private let secret = LastFMConfig.sharedSecret
 
     init() {
-        self.sessionKey = KeychainHelper.shared.get("lastfm_sessionKey")
-        self.username   = KeychainHelper.shared.get("lastfm_username")
+        // Tentar carregar do novo sistema primeiro
+        do {
+            self.sessionKey = try KeychainService.shared.loadLastFMSession()
+            print("✅ Session key carregada do Keychain moderno")
+        } catch KeychainError.itemNotFound {
+            // Tentar migrar do sistema antigo
+            if let legacyKey = KeychainHelper.shared.get("lastfm_sessionKey") {
+                print("📦 Migrando session key do Keychain legacy...")
+                self.sessionKey = legacyKey
+                // Salvar no novo formato
+                try? KeychainService.shared.saveLastFMSession(legacyKey)
+                // Remover formato antigo
+                KeychainHelper.shared.remove("lastfm_sessionKey")
+                print("✅ Session key migrada com sucesso")
+            } else {
+                print("ℹ️ Nenhuma session key encontrada")
+                self.sessionKey = nil
+            }
+        } catch {
+            print("⚠️ Erro ao carregar session key: \(error)")
+            self.sessionKey = nil
+        }
+        
+        // Carregar username
+        do {
+            self.username = try KeychainService.shared.loadLastFMUsername()
+            print("✅ Username carregado do Keychain moderno")
+        } catch KeychainError.itemNotFound {
+            // Tentar migrar do sistema antigo
+            if let legacyUsername = KeychainHelper.shared.get("lastfm_username") {
+                print("📦 Migrando username do Keychain legacy...")
+                self.username = legacyUsername
+                // Salvar no novo formato
+                try? KeychainService.shared.saveLastFMUsername(legacyUsername)
+                // Remover formato antigo
+                KeychainHelper.shared.remove("lastfm_username")
+                print("✅ Username migrado com sucesso")
+            } else {
+                print("ℹ️ Nenhum username encontrado")
+                self.username = nil
+            }
+        } catch {
+            print("⚠️ Erro ao carregar username: \(error)")
+            self.username = nil
+        }
     }
 
     func getToken() async throws -> String {
@@ -60,12 +103,35 @@ final class LastFMClient: ObservableObject {
             throw LastFMError(code: -2, message: "Sessão inválida")
         }
         self.sessionKey = sk; self.username = name
-        KeychainHelper.shared.set(sk, for: "lastfm_sessionKey")
-        KeychainHelper.shared.set(name, for: "lastfm_username")
+        self.sessionKey = sk
+        self.username = name
+        
+        // Salvar no Keychain moderno
+        do {
+            try KeychainService.shared.saveOrUpdate(KeychainItem.lastFMSession(sessionKey: sk))
+            try KeychainService.shared.saveOrUpdate(KeychainItem.lastFMUsername(username: name))
+            print("✅ Credenciais Last.fm salvas no Keychain")
+        } catch {
+            print("⚠️ Erro ao salvar credenciais no Keychain: \(error)")
+            // Fallback para sistema antigo se falhar
+            KeychainHelper.shared.set(sk, for: "lastfm_sessionKey")
+            KeychainHelper.shared.set(name, for: "lastfm_username")
+        }
     }
 
     func signOut() {
-        sessionKey = nil; username = nil
+        sessionKey = nil
+        username = nil
+        
+        // Remover do Keychain moderno
+        do {
+            try KeychainService.shared.deleteAllLastFMCredentials()
+            print("✅ Credenciais Last.fm removidas do Keychain")
+        } catch {
+            print("⚠️ Erro ao remover credenciais: \(error)")
+        }
+        
+        // Remover também do sistema antigo (garantia)
         KeychainHelper.shared.remove("lastfm_sessionKey")
         KeychainHelper.shared.remove("lastfm_username")
     }
