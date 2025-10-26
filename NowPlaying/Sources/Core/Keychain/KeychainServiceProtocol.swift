@@ -2,224 +2,206 @@
 //  KeychainServiceProtocol.swift
 //  NowPlaying
 //
-//  Protocol para abstração de operações no Keychain
-//  Permite dependency injection e testes com mocks
-//
-//  Created by Diego Castilho on 25/10/25
-//  Copyright © 2025 Diego Castilho. All rights reserved.
+//  Protocol para serviços de Keychain com suporte a Swift Concurrency
 //
 
 import Foundation
 
-/// Protocol que define operações no Keychain
-/// 
-/// Este protocol permite:
-/// - Dependency injection
-/// - Testes unitários com mocks
-/// - Múltiplas implementações (Keychain real, in-memory para testes, etc)
-///
-/// **Exemplo de uso**:
-/// ```swift
-/// let service: KeychainServiceProtocol = KeychainService.shared
-/// let item = KeychainItem.lastFMSession(sessionKey: "abc123")
-/// try service.save(item)
-/// ```
-protocol KeychainServiceProtocol {
+/// Protocol que define operações do Keychain com async/await
+protocol KeychainServiceProtocol: Actor {
     
     // MARK: - CRUD Operations
     
     /// Salva um item no Keychain
     /// - Parameter item: Item a ser salvo
-    /// - Throws: `KeychainError` se a operação falhar
-    ///
-    /// **Comportamento**:
-    /// - Se o item já existe, lança `KeychainError.duplicateItem`
-    /// - Use `update()` para atualizar itens existentes
-    func save(_ item: KeychainItem) throws
+    /// - Throws: KeychainError se a operação falhar
+    func save(_ item: KeychainItem) async throws
     
     /// Carrega um item do Keychain
     /// - Parameters:
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    ///   - accessGroup: Grupo de acesso (opcional)
-    /// - Returns: KeychainItem com os dados
-    /// - Throws: `KeychainError.itemNotFound` se não encontrado
-    func load(account: String, service: String, accessGroup: String?) throws -> KeychainItem
+    ///   - account: Account do item
+    ///   - service: Service do item
+    ///   - accessGroup: Access group (opcional)
+    /// - Returns: KeychainItem encontrado
+    /// - Throws: KeychainError se não encontrar ou falhar
+    func load(account: String, service: String, accessGroup: String?) async throws -> KeychainItem
     
     /// Atualiza um item existente no Keychain
-    /// - Parameter item: Item com novos dados
-    /// - Throws: `KeychainError` se a operação falhar
-    ///
-    /// **Comportamento**:
-    /// - Se o item não existe, lança `KeychainError.itemNotFound`
-    /// - Use `save()` para criar novos itens
-    func update(_ item: KeychainItem) throws
+    /// - Parameter item: Item com novos valores
+    /// - Throws: KeychainError se não encontrar ou falhar
+    func update(_ item: KeychainItem) async throws
     
     /// Remove um item do Keychain
     /// - Parameters:
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    ///   - accessGroup: Grupo de acesso (opcional)
-    /// - Throws: `KeychainError` se a operação falhar
-    ///
-    /// **Comportamento**:
-    /// - Se o item não existe, não lança erro (operação é idempotente)
-    func delete(account: String, service: String, accessGroup: String?) throws
+    ///   - account: Account do item
+    ///   - service: Service do item
+    ///   - accessGroup: Access group (opcional)
+    /// - Throws: KeychainError se não encontrar ou falhar
+    func delete(account: String, service: String, accessGroup: String?) async throws
     
     /// Verifica se um item existe no Keychain
     /// - Parameters:
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    ///   - accessGroup: Grupo de acesso (opcional)
-    /// - Returns: `true` se o item existe, `false` caso contrário
-    func exists(account: String, service: String, accessGroup: String?) -> Bool
+    ///   - account: Account do item
+    ///   - service: Service do item
+    ///   - accessGroup: Access group (opcional)
+    /// - Returns: true se existe, false caso contrário
+    func exists(account: String, service: String, accessGroup: String?) async -> Bool
 }
 
-// MARK: - Convenience Methods
+// MARK: - Convenience Extensions
 
 extension KeychainServiceProtocol {
     
-    /// Carrega um item sem access group (usa defaults)
-    /// - Parameters:
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    /// - Returns: KeychainItem com os dados
-    /// - Throws: `KeychainError` se a operação falhar
-    func load(account: String, service: String) throws -> KeychainItem {
-        try load(account: account, service: service, accessGroup: nil)
+    // MARK: - CRUD sem Access Group
+    
+    /// Carrega um item sem especificar access group
+    func load(account: String, service: String) async throws -> KeychainItem {
+        try await load(account: account, service: service, accessGroup: nil)
     }
     
-    /// Remove um item sem access group (usa defaults)
-    /// - Parameters:
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    /// - Throws: `KeychainError` se a operação falhar
-    func delete(account: String, service: String) throws {
-        try delete(account: account, service: service, accessGroup: nil)
+    /// Remove um item sem especificar access group
+    func delete(account: String, service: String) async throws {
+        try await delete(account: account, service: service, accessGroup: nil)
     }
     
-    /// Verifica se um item existe sem access group (usa defaults)
-    /// - Parameters:
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    /// - Returns: `true` se o item existe
-    func exists(account: String, service: String) -> Bool {
-        exists(account: account, service: service, accessGroup: nil)
+    /// Verifica existência sem especificar access group
+    func exists(account: String, service: String) async -> Bool {
+        await exists(account: account, service: service, accessGroup: nil)
     }
-}
-
-// MARK: - String Convenience Methods
-
-extension KeychainServiceProtocol {
+    
+    // MARK: - String Helpers
     
     /// Salva uma string no Keychain
-    /// - Parameters:
-    ///   - value: String a ser salva
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    ///   - accessibility: Nível de acessibilidade
-    /// - Throws: `KeychainError` se a operação falhar
-    func saveString(
-        _ value: String,
-        account: String,
-        service: String,
-        accessibility: KeychainItem.Accessibility = .whenUnlocked
-    ) throws {
+    func saveString(_ value: String, account: String, service: String, accessibility: KeychainItem.Accessibility = .whenUnlocked) async throws {
         let item = KeychainItem(
             account: account,
             service: service,
             value: value,
+            accessGroup: nil,
             accessibility: accessibility
         )
-        try save(item)
+        try await save(item)
     }
     
     /// Carrega uma string do Keychain
-    /// - Parameters:
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    /// - Returns: String armazenada
-    /// - Throws: `KeychainError` se não encontrado ou conversão falhar
-    func loadString(account: String, service: String) throws -> String {
-        let item = try load(account: account, service: service)
-        
+    func loadString(account: String, service: String) async throws -> String {
+        let item = try await load(account: account, service: service)
         guard let string = item.stringValue else {
             throw KeychainError.invalidData
         }
-        
         return string
     }
     
     /// Atualiza uma string no Keychain
-    /// - Parameters:
-    ///   - value: Nova string
-    ///   - account: Identificador do item
-    ///   - service: Serviço associado
-    ///   - accessibility: Nível de acessibilidade
-    /// - Throws: `KeychainError` se a operação falhar
-    func updateString(
-        _ value: String,
-        account: String,
-        service: String,
-        accessibility: KeychainItem.Accessibility = .whenUnlocked
-    ) throws {
+    func updateString(_ value: String, account: String, service: String) async throws {
         let item = KeychainItem(
             account: account,
             service: service,
             value: value,
-            accessibility: accessibility
+            accessGroup: nil,
+            accessibility: .whenUnlocked
         )
-        try update(item)
+        try await update(item)
     }
-}
-
-// MARK: - Last.fm Convenience Methods
-
-extension KeychainServiceProtocol {
+    
+    // MARK: - Last.fm Specific
     
     /// Salva session key do Last.fm
-    /// - Parameter sessionKey: Chave de sessão
-    /// - Throws: `KeychainError` se a operação falhar
-    func saveLastFMSession(_ sessionKey: String) throws {
+    func saveLastFMSession(_ sessionKey: String) async throws {
         let item = KeychainItem.lastFMSession(sessionKey: sessionKey)
-        try save(item)
+        try await save(item)
     }
     
     /// Carrega session key do Last.fm
-    /// - Returns: Chave de sessão
-    /// - Throws: `KeychainError` se não encontrado
-    func loadLastFMSession() throws -> String {
+    func loadLastFMSession() async throws -> String {
         let service = Bundle.main.bundleIdentifier ?? "com.diegocastilho.NowPlaying"
-        return try loadString(account: "lastfm_session_key", service: service)
+        return try await loadString(account: "lastfm_session_key", service: service)
     }
     
     /// Salva username do Last.fm
-    /// - Parameter username: Nome de usuário
-    /// - Throws: `KeychainError` se a operação falhar
-    func saveLastFMUsername(_ username: String) throws {
+    func saveLastFMUsername(_ username: String) async throws {
         let item = KeychainItem.lastFMUsername(username: username)
-        try save(item)
+        try await save(item)
     }
     
     /// Carrega username do Last.fm
-    /// - Returns: Nome de usuário
-    /// - Throws: `KeychainError` se não encontrado
-    func loadLastFMUsername() throws -> String {
+    func loadLastFMUsername() async throws -> String {
         let service = Bundle.main.bundleIdentifier ?? "com.diegocastilho.NowPlaying"
-        return try loadString(account: "lastfm_username", service: service)
+        return try await loadString(account: "lastfm_username", service: service)
     }
     
     /// Remove todas as credenciais do Last.fm
-    /// - Throws: `KeychainError` se a operação falhar
-    func deleteAllLastFMCredentials() throws {
+    func deleteAllLastFMCredentials() async throws {
         let service = Bundle.main.bundleIdentifier ?? "com.diegocastilho.NowPlaying"
         
-        // Session key
-        try? delete(account: "lastfm_session_key", service: service)
+        do {
+            try await delete(account: "lastfm_session_key", service: service)
+        } catch KeychainError.itemNotFound {
+            // OK, item já não existe
+        }
         
-        // Username
-        try? delete(account: "lastfm_username", service: service)
+        do {
+            try await delete(account: "lastfm_username", service: service)
+        } catch KeychainError.itemNotFound {
+            // OK, item já não existe
+        }
+    }
+    
+    // MARK: - Batch Operations
+    
+    /// Salva múltiplos items de uma vez
+    func saveBatch(_ items: [KeychainItem]) async throws {
+        for item in items {
+            try await save(item)
+        }
+    }
+    
+    /// Remove múltiplos items de uma vez
+    func deleteBatch(_ items: [(account: String, service: String)]) async throws {
+        for (account, service) in items {
+            try await delete(account: account, service: service)
+        }
+    }
+    
+    // MARK: - Migration Helper
+    
+    /// Migra um item de um account para outro
+    func migrate(from oldAccount: String, to newAccount: String, service: String) async throws {
+        do {
+            let oldItem = try await load(account: oldAccount, service: service)
+            
+            // Criar novo item com novo account
+            let newItem = KeychainItem(
+                account: newAccount,
+                service: oldItem.service,
+                data: oldItem.data,
+                accessGroup: oldItem.accessGroup,
+                accessibility: oldItem.accessibility
+            )
+            
+            try await save(newItem)
+            try await delete(account: oldAccount, service: service)
+            print("✅ Migração: \(oldAccount) → \(newAccount)")
+        } catch {
+            print("⚠️ Erro na migração de \(oldAccount): \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
+    // MARK: - Upsert (Save or Update)
+    
+    /// Salva ou atualiza um item (upsert)
+    func saveOrUpdate(_ item: KeychainItem) async throws {
+        let itemExists = await exists(
+            account: item.account,
+            service: item.service,
+            accessGroup: item.accessGroup
+        )
         
-        // Credenciais antiga
+        if itemExists {
+            try await update(item)
+        } else {
+            try await save(item)
+        }
     }
 }

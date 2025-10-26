@@ -26,7 +26,6 @@ enum ConfigurationError: LocalizedError {
 }
 
 /// Gerenciador central de configurações
-@MainActor
 final class ConfigurationManager {
     
     // MARK: - Singleton

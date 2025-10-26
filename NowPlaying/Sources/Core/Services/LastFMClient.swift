@@ -17,8 +17,54 @@ final class LastFMClient: ObservableObject {
     private let secret = LastFMConfig.sharedSecret
 
     init() {
-        self.sessionKey = KeychainHelper.shared.get("lastfm_sessionKey")
-        self.username   = KeychainHelper.shared.get("lastfm_username")
+        // Inicialização síncrona - valores carregados lazy
+        self.sessionKey = nil
+        self.username = nil
+        
+        // Carregar credenciais de forma assíncrona
+        Task { @MainActor in
+            await self.loadCredentials()
+        }
+    }
+    
+    /// Carrega credenciais do Keychain de forma assíncrona
+    private func loadCredentials() async {
+        do {
+            // Tentar carregar do Keychain moderno
+            let session = try await KeychainService.shared.loadLastFMSession()
+            let user = try await KeychainService.shared.loadLastFMUsername()
+            
+            self.sessionKey = session
+            self.username = user
+            
+            print("✅ Credenciais Last.fm carregadas do Keychain")
+        } catch KeychainError.itemNotFound {
+            // Tentar migrar do formato antigo (KeychainHelper)
+            if let oldSession = KeychainHelper.shared.get("lastfm_sessionKey"),
+               let oldUsername = KeychainHelper.shared.get("lastfm_username") {
+                print("🔄 Migrando credenciais do formato antigo...")
+                
+                do {
+                    try await KeychainService.shared.saveLastFMSession(oldSession)
+                    try await KeychainService.shared.saveLastFMUsername(oldUsername)
+                    
+                    self.sessionKey = oldSession
+                    self.username = oldUsername
+                    
+                    // Remover formato antigo
+                    KeychainHelper.shared.remove("lastfm_sessionKey")
+                    KeychainHelper.shared.remove("lastfm_username")
+                    
+                    print("✅ Migração completa")
+                } catch {
+                    print("❌ Erro na migração: \(error.localizedDescription)")
+                }
+            } else {
+                print("ℹ️ Nenhuma credencial encontrada (usuário não logado)")
+            }
+        } catch {
+            print("❌ Erro ao carregar credenciais: \(error.localizedDescription)")
+        }
     }
 
     func getToken() async throws -> String {
@@ -60,14 +106,29 @@ final class LastFMClient: ObservableObject {
             throw LastFMError(code: -2, message: "Sessão inválida")
         }
         self.sessionKey = sk; self.username = name
-        KeychainHelper.shared.set(sk, for: "lastfm_sessionKey")
-        KeychainHelper.shared.set(name, for: "lastfm_username")
+        
+        // Salvar no Keychain moderno
+        do {
+            try await KeychainService.shared.saveLastFMSession(sk)
+            try await KeychainService.shared.saveLastFMUsername(name)
+            print("✅ Credenciais salvas no Keychain")
+        } catch {
+            print("❌ Erro ao salvar credenciais: \(error.localizedDescription)")
+            throw error
+        }
     }
 
     func signOut() {
         sessionKey = nil; username = nil
-        KeychainHelper.shared.remove("lastfm_sessionKey")
-        KeychainHelper.shared.remove("lastfm_username")
+        
+        Task {
+            do {
+                try await KeychainService.shared.deleteAllLastFMCredentials()
+                print("✅ Credenciais removidas do Keychain")
+            } catch {
+                print("⚠️ Erro ao remover credenciais: \(error.localizedDescription)")
+            }
+        }
     }
 
     func updateNowPlaying(artist: String, track: String, album: String?, durationSec: Int?) async throws {

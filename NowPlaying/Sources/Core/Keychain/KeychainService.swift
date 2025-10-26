@@ -19,8 +19,8 @@ import Security
 /// let item = KeychainItem.lastFMSession(sessionKey: "abc123")
 /// try service.save(item)
 /// ```
-@MainActor
-final class KeychainService: KeychainServiceProtocol {
+
+actor KeychainService: KeychainServiceProtocol {
     
     // MARK: - Singleton
     
