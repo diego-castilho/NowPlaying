@@ -41,7 +41,7 @@ final class ScrobbleManager: ObservableObject {
 
                 Task {
                     if let url = await lastfm.fetchArtworkURL(artist: artist, track: title, album: album),
-                       let img = await loadNSImage(from: url) {
+                       let img = await artwork.loadImage(from: url) {
                         artwork.image = img
                     }
                     do {

@@ -9,7 +9,7 @@ final class ArtworkStore: ObservableObject {
     @Published var title: String = "-"
     @Published var artist: String = "-"
     @Published var album: String? = nil
-
+    
     func placeholder() -> NSImage {
         let size = NSSize(width: 300, height: 300)
         let img = NSImage(size: size)
@@ -25,13 +25,19 @@ final class ArtworkStore: ObservableObject {
         img.unlockFocus()
         return img
     }
-}
-
-func loadNSImage(from url: URL) async -> NSImage? {
-    do {
-        let (data, _) = try await URLSession.shared.data(from: url)
-        return NSImage(data: data)
-    } catch {
-        return nil
+    
+    // MARK: - Image Loading
+    
+    /// Carrega uma imagem de forma assíncrona de uma URL
+    /// - Parameter url: URL da imagem
+    /// - Returns: NSImage carregada ou nil se falhar
+    func loadImage(from url: URL) async -> NSImage? {
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return NSImage(data: data)
+        } catch {
+            print("❌ Erro ao carregar imagem: \(error.localizedDescription)")
+            return nil
+        }
     }
 }
