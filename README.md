@@ -1,8 +1,13 @@
 # NowPlaying
 
-![NowPlaying Icon](NowPlaying/Resources/Assets.xcassets/AppIcon.appiconset/NowPlaying.png)
+![NowPlaying Icon]()
+<p align="center">
+  <img src="NowPlaying/Resources/Assets.xcassets/AppIcon.appiconset/NowPlaying.png" alt="NowPlaying Icon" width="200"/>
+</p>
 
-Um aplicativo macOS moderno e elegante que automaticamente registra suas músicas do Apple Music no Last.fm
+<p>
+<strong>Aplicativo macOS moderno que registra automaticamente suas músicas do Apple Music no Last.fm</strong>
+</p>
 
 [![Version](https://img.shields.io/badge/version-0.9.3-blue.svg)](https://github.com/diego-castilho/NowPlaying/releases/tag/v0.9.3)
 [![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
