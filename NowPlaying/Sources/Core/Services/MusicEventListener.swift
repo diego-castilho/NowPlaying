@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-struct NowPlayingInfo {
+struct NowPlayingInfo: Sendable {
     let state: String
     let name: String?
     let artist: String?

@@ -11,7 +11,7 @@ final class ScrobbleManager: ObservableObject {
     private var currentTrackKey: String?
     private var currentStartDate: Date?
     private var currentTotalSec: Int?
-    private var scrobbleTimer: Timer?
+    private var scrobbleTask: Task<Void, Never>?
 
     init(lastfm: LastFMClient, context: NSManagedObjectContext, artwork: ArtworkStore) {
         self.lastfm = lastfm
@@ -64,8 +64,19 @@ final class ScrobbleManager: ObservableObject {
             if let start = currentStartDate, let tot = currentTotalSec, tot > 0 {
                 let played = Int(Date().timeIntervalSince(start))
                 let threshold = min(max(30, tot / 2), 240)
-                if played >= threshold { fireScrobble() }
+                
+                if played >= threshold {
+                    print("⏹️ Música parada após \(played)s (threshold: \(threshold)s)")
+                    
+                    // Scrobble imediato quando música para
+                    Task { [weak self] in
+                        await self?.fireScrobble()
+                    }
+                } else {
+                    print("⏭️ Música parada cedo (\(played)s < \(threshold)s), sem scrobble")
+                }
             }
+            
             cancelTimer()
             currentTrackKey = nil
             currentStartDate = nil
@@ -79,34 +90,85 @@ final class ScrobbleManager: ObservableObject {
     private func scheduleScrobbleIfNeeded(totalSec: Int) {
         guard totalSec > 30 else { return }
         let threshold = min(max(30, totalSec / 2), 240)
-        scrobbleTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(threshold), repeats: false) { [weak self] _ in
-            self?.fireScrobble()
+        
+        // Cancelar task anterior se existir
+        scrobbleTask?.cancel()
+        
+        // Criar nova task com delay
+        scrobbleTask = Task { [weak self] in
+            do {
+                // Usar Task.sleep ao invés de Timer
+                try await Task.sleep(for: .seconds(threshold))
+                
+                // Verificar se não foi cancelado
+                guard !Task.isCancelled else {
+                    print("⏭️ Scrobble cancelado (música mudou)")
+                    return
+                }
+                
+                // Executar scrobble
+                await self?.fireScrobble()
+            } catch {
+                // Task.sleep pode lançar CancellationError
+                print("⏭️ Scrobble cancelado: \(error.localizedDescription)")
+            }
         }
+        
+        print("⏰ Scrobble agendado para \(threshold)s")
     }
 
-    private func fireScrobble() {
+    private func fireScrobble() async {
         guard let key = currentTrackKey,
               let start = currentStartDate,
-              let tot = currentTotalSec else { return }
+              let tot = currentTotalSec else {
+            print("⚠️ Scrobble ignorado: dados incompletos")
+            return
+        }
+        
         let parts = key.split(separator: "|").map(String.init)
         let artist = parts[0], title = parts[1]
         let album = parts.count > 2 ? parts[2] : nil
         let ts = Int(start.timeIntervalSince1970)
-
-        Task {
-            do {
-                try await lastfm.scrobble(artist: artist, track: title, album: album?.isEmpty == true ? nil : album, timestamp: ts, durationSec: tot)
-                LogEntry.create(context: context, kind: "scrobble", status: "ok",
-                                track: title, artist: artist, album: album, extra: nil)
-            } catch {
-                LogEntry.create(context: context, kind: "scrobble", status: "failed",
-                                track: title, artist: artist, album: album, extra: error.localizedDescription)
-            }
+        
+        print("📤 Enviando scrobble: \(artist) - \(title)")
+        
+        do {
+            try await lastfm.scrobble(
+                artist: artist,
+                track: title,
+                album: album?.isEmpty == true ? nil : album,
+                timestamp: ts,
+                durationSec: tot
+            )
+            
+            LogEntry.create(
+                context: context,
+                kind: "scrobble",
+                status: "ok",
+                track: title,
+                artist: artist,
+                album: album,
+                extra: nil
+            )
+            
+            print("✅ Scrobble enviado com sucesso")
+        } catch {
+            LogEntry.create(
+                context: context,
+                kind: "scrobble",
+                status: "failed",
+                track: title,
+                artist: artist,
+                album: album,
+                extra: error.localizedDescription
+            )
+            
+            print("❌ Erro ao enviar scrobble: \(error.localizedDescription)")
         }
     }
 
     private func cancelTimer() {
-        scrobbleTimer?.invalidate()
-        scrobbleTimer = nil
+        scrobbleTask?.cancel()
+        scrobbleTask = nil
     }
 }
