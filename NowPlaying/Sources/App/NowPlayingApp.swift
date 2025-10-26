@@ -10,7 +10,7 @@ struct NowPlayingApp: App {
 
 final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     static weak var shared: AppDelegate?
-
+    
     private var statusItem: NSStatusItem?
     private let popover = NSPopover()
     private var globalHoverMonitor: Any?
@@ -20,12 +20,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     // Windows para gerenciar referências
     private var mainWindow: NSWindow?
     private var preferencesWindow: NSWindow?
-
+    
     private let core = CoreDataStack.shared
     private let lastfm = LastFMClient()
     private let artwork = ArtworkStore()
     private let launchManager = LaunchAtLoginManager.shared
-
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Validar configurações na inicialização
         do {
@@ -54,20 +54,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         
         // Inicializa o gerenciador de launch at login
         launchManager.initialize()
-
+        
         let content = MenuBarPanelView(core: core, lastfm: lastfm, artwork: artwork)
-
+        
         popover.behavior = .transient
         popover.contentSize = NSSize(width: 480, height: 260)
         popover.contentViewController = NSHostingController(rootView: content)
-
+        
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = statusItem?.button {
             button.image = NSImage(systemSymbolName: "music.note", accessibilityDescription: "Now Playing")
             button.target = self
             button.action = #selector(statusItemAction(_:))
             button.sendAction(on: [.leftMouseUp, .mouseEntered, .rightMouseUp])
-
+            
             globalHoverMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.mouseMoved]) { [weak self] event in
                 self?.handleHover(event)
             }
@@ -80,7 +80,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         // (isso mudará automaticamente para .regular)
         openMainWindow()
     }
-
+    
     @objc private func statusItemAction(_ sender: Any?) {
         guard let button = statusItem?.button else { return }
         switch NSApp.currentEvent?.type {
@@ -149,7 +149,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             NSApp.terminate(nil)
         }
     }
-
+    
     private func handleHover(_ event: NSEvent) {
         guard let button = statusItem?.button, let window = button.window else { return }
         let mouse = NSEvent.mouseLocation
@@ -169,7 +169,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: work)
         }
     }
-
+    
     func applicationWillTerminate(_ notification: Notification) {
         if let gm = globalHoverMonitor { NSEvent.removeMonitor(gm) }
         if let lm = localHoverMonitor { NSEvent.removeMonitor(lm) }
@@ -184,15 +184,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             NSApp.setActivationPolicy(.accessory)
         }
     }
-
+    
     func closePopover() { popover.performClose(nil) }
-
+    
     // Abre a janela principal
     func openMainWindow() {
         // Muda para .regular quando a janela principal for aberta
         NSApp.setActivationPolicy(.regular)
         
         if mainWindow == nil {
+            let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "?"
+            let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "?"
             let hosting = NSHostingController(
                 rootView: ContentView()
                     .environment(\.managedObjectContext, core.container.viewContext)
@@ -200,7 +202,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
                     .environmentObject(artwork)
             )
             let window = NSWindow(contentViewController: hosting)
-            window.title = "Now Playing"
+            window.title = "Now Playing - v\(version) (\(build))"
             window.styleMask = [.titled, .closable, .miniaturizable, .resizable]
             window.isReleasedWhenClosed = false
             window.setContentSize(NSSize(width: 940, height: 620))
@@ -222,15 +224,15 @@ struct MenuBarPanelView: View {
     let core: CoreDataStack
     @ObservedObject var lastfm: LastFMClient
     @ObservedObject var artwork: ArtworkStore
-
+    
     init(core: CoreDataStack, lastfm: LastFMClient, artwork: ArtworkStore) {
         self.core = core; self.lastfm = lastfm; self.artwork = artwork
     }
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             ArtworkWidgetView(artwork: artwork)
-
+            
             HStack {
                 Button {
                     AppDelegate.shared?.openMainWindow()
