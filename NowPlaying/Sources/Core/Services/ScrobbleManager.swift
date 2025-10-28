@@ -4,19 +4,21 @@ import Combine
 
 @MainActor
 final class ScrobbleManager: ObservableObject {
-    private let lastfm: LastFMClient
+    private let lastfm: LastFMClientProtocol  // ← Protocol!
     private let context: NSManagedObjectContext
-    private let artwork: ArtworkStore
-
+    private let artwork: ArtworkStore  // ← Manter concreta por enquanto
+    
     private var currentTrackKey: String?
     private var currentStartDate: Date?
     private var currentTotalSec: Int?
     private var scrobbleTask: Task<Void, Never>?
-
-    init(lastfm: LastFMClient, context: NSManagedObjectContext, artwork: ArtworkStore) {
+    
+    init(lastfm: LastFMClientProtocol, context: NSManagedObjectContext, artwork: ArtworkStore) {
         self.lastfm = lastfm
         self.context = context
         self.artwork = artwork
+        
+        print("🎯 ScrobbleManager: Inicializado com DI")
     }
 
     func handle(_ np: NowPlayingInfo) {

@@ -108,11 +108,23 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .onAppear {
-            let mgr = ScrobbleManager(lastfm: lastfm, context: context, artwork: artwork)
+            // IMPORTANTE: Usar a mesma instância de artwork que está no Environment
+            let container = DependencyContainer.shared
+            
+            // ScrobbleManager deve usar a MESMA instância de artwork
+            let mgr = ScrobbleManager(
+                lastfm: container.lastfm,
+                context: context,
+                artwork: artwork  // ← Usar a instância do @EnvironmentObject!
+            )
             self.scrobbler = mgr
-            MusicEventListener.shared.start { [weak mgr] info in
-                mgr?.handle(info)
+            
+            MusicEventListener.shared.start { [weak mgr] in
+                mgr?.handle($0)
             }
+            
+            print("✅ ContentView: ScrobbleManager configurado")
+            print("✅ ContentView: Artwork instance: \(ObjectIdentifier(artwork))")
         }
         .alert("Falha na autenticação", isPresented: $showingError, actions: {
             Button("OK", role: .cancel) { }

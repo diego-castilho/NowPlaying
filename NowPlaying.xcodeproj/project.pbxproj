@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F12A6072EAF07E600B8963D /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12A6062EAF07E600B8963D /* DependencyContainer.swift */; };
+		9F12A6092EAF08BF00B8963D /* LastFMClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F12A6082EAF08BF00B8963D /* LastFMClientProtocol.swift */; };
+		9F349D902EB189CC00612B0E /* MockUsageExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349D8F2EB189CC00612B0E /* MockUsageExamples.swift */; };
+		9F349D922EB18A1100612B0E /* MockLastFMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349D912EB18A1100612B0E /* MockLastFMClient.swift */; };
+		9F349D972EB1920600612B0E /* mainwindow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F349D942EB1920600612B0E /* mainwindow.png */; };
+		9F349D982EB1920600612B0E /* popover.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F349D952EB1920600612B0E /* popover.png */; };
 		9F41EAFE2EAD3F780022F603 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EAC82EAD3F780022F603 /* README.md */; };
 		9F41EB2A2EAD3F780022F603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EA9F2EAD3F780022F603 /* Assets.xcassets */; };
 		9F41EB452EAD3F780022F603 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EA9D2EAD3F780022F603 /* CHANGELOG.md */; };
@@ -43,6 +49,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F12A6062EAF07E600B8963D /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		9F12A6082EAF08BF00B8963D /* LastFMClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFMClientProtocol.swift; sourceTree = "<group>"; };
+		9F349D8F2EB189CC00612B0E /* MockUsageExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUsageExamples.swift; sourceTree = "<group>"; };
+		9F349D912EB18A1100612B0E /* MockLastFMClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLastFMClient.swift; sourceTree = "<group>"; };
+		9F349D942EB1920600612B0E /* mainwindow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainwindow.png; sourceTree = "<group>"; };
+		9F349D952EB1920600612B0E /* popover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popover.png; sourceTree = "<group>"; };
 		9F3642A22E7E538B00D4E680 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F41EA982EAD3F780022F603 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9F41EA992EAD3F780022F603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +106,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F12A6022EAF076E00B8963D /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				9F12A6062EAF07E600B8963D /* DependencyContainer.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
+		9F12A6032EAF078100B8963D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9F12A6082EAF08BF00B8963D /* LastFMClientProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9F12A6042EAF07A300B8963D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				9F349D912EB18A1100612B0E /* MockLastFMClient.swift */,
+				9F349D8F2EB189CC00612B0E /* MockUsageExamples.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		9F12A6052EAF07B100B8963D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9F12A6042EAF07A300B8963D /* Mocks */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		9F349D962EB1920600612B0E /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				9F349D942EB1920600612B0E /* mainwindow.png */,
+				9F349D952EB1920600612B0E /* popover.png */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		9F3642992E7E538B00D4E680 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +183,7 @@
 			children = (
 				9F41EA9C2EAD3F780022F603 /* ARCHITECTURE.md */,
 				9F41EA9D2EAD3F780022F603 /* CHANGELOG.md */,
+				9F349D962EB1920600612B0E /* Screenshots */,
 			);
 			path = Documentation;
 			sourceTree = "<group>";
@@ -218,9 +273,11 @@
 			isa = PBXGroup;
 			children = (
 				9F41EAAD2EAD3F780022F603 /* Configuration */,
+				9F12A6022EAF076E00B8963D /* DependencyInjection */,
 				9F41EAB32EAD3F780022F603 /* Keychain */,
 				9F41EAB52EAD3F780022F603 /* Models */,
 				9F41EAB72EAD3F780022F603 /* Persistence */,
+				9F12A6032EAF078100B8963D /* Protocols */,
 				9F41EABB2EAD3F780022F603 /* Services */,
 				9F41EABF2EAD3F780022F603 /* Utilities */,
 			);
@@ -232,6 +289,7 @@
 			children = (
 				9F41EAAA2EAD3F780022F603 /* App */,
 				9F41EAC02EAD3F780022F603 /* Core */,
+				9F12A6052EAF07B100B8963D /* Tests */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -359,6 +417,8 @@
 				9F41EB662EAD3F780022F603 /* Info.plist in Resources */,
 				9F41EB722EAD3F780022F603 /* ARCHITECTURE.md in Resources */,
 				9F41EB792EAD3F780022F603 /* Secrets.xcconfig in Resources */,
+				9F349D972EB1920600612B0E /* mainwindow.png in Resources */,
+				9F349D982EB1920600612B0E /* popover.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,14 +440,18 @@
 				9F41EB842EAD3F780022F603 /* ConfigurationManager.swift in Sources */,
 				9F41EB852EAD3F780022F603 /* RecentTracksView.swift in Sources */,
 				9F41EB862EAD3F780022F603 /* LaunchAtLoginTestInterface.swift in Sources */,
+				9F12A6072EAF07E600B8963D /* DependencyContainer.swift in Sources */,
 				9F41EB872EAD3F780022F603 /* ArtworkWidgetView.swift in Sources */,
+				9F349D922EB18A1100612B0E /* MockLastFMClient.swift in Sources */,
 				9F41EB882EAD3F780022F603 /* Crypto+MD5.swift in Sources */,
 				9F41EB892EAD3F780022F603 /* LastFMClient.swift in Sources */,
 				9F41EB8A2EAD3F780022F603 /* NowPlayingApp.swift in Sources */,
 				9F41EB8B2EAD3F780022F603 /* Config.swift in Sources */,
 				9F41EB8C2EAD3F780022F603 /* Models.swift in Sources */,
 				9F41EB8D2EAD3F780022F603 /* KeychainItem.swift in Sources */,
+				9F12A6092EAF08BF00B8963D /* LastFMClientProtocol.swift in Sources */,
 				9F41EB8E2EAD3F780022F603 /* MusicEventListener.swift in Sources */,
+				9F349D902EB189CC00612B0E /* MockUsageExamples.swift in Sources */,
 				9F41EB8F2EAD3F780022F603 /* Date+Fmt.swift in Sources */,
 				9F41EB902EAD3F780022F603 /* ArtworkStore.swift in Sources */,
 				9F41EB912EAD3F780022F603 /* LaunchAtLoginManager.swift in Sources */,
@@ -528,7 +592,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = F83F7B693P;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -552,7 +616,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 0.9.4;
+				MARKETING_VERSION = 0.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diegocastilho.NowPlaying;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -574,7 +638,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = F83F7B693P;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -598,7 +662,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 0.9.4;
+				MARKETING_VERSION = 0.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diegocastilho.NowPlaying;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;

@@ -8,7 +8,7 @@ struct LastFMError: LocalizedError {
 }
 
 @MainActor
-final class LastFMClient: ObservableObject {
+final class LastFMClient: LastFMClientProtocol {
     @Published var sessionKey: String?
     @Published var username: String?
 
