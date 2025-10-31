@@ -6,13 +6,12 @@
   <img src="NowPlaying/Resources/Assets.xcassets/NowPlaying.png" alt="NowPlaying Icon" width="200"/>
 </p>
 
-
 **Scrobbler nativo e moderno para Last.fm no macOS**
 
 [![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/Platform-macOS%2012.0+-blue.svg)](https://www.apple.com/macos/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](NowPlaying/Documentation/LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.9.5-purple.svg)](NowPlaying/Documentation/CHANGELOG.md)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-0.9.6-purple.svg)](CHANGELOG.md)
 
 [Features](#features) • [Instalação](#instalação) • [Desenvolvimento](#desenvolvimento) • [Arquitetura](#arquitetura) • [Roadmap](#roadmap)
 
@@ -37,9 +36,9 @@
 
 ## 🎬 Screenshots
 
-| Menu Bar Popover | Janela Principal |
-|:---:|:---:|
-| ![Popover](NowPlaying/Documentation/Screenshots/popover.png) | ![Main](NowPlaying/Documentation/Screenshots/mainwindow.png) |
+| Menu Bar Popover | Janela Principal | Histórico de Logs |
+|:---:|:---:|:---:|
+| ![Popover](docs/screenshots/popover.png) | ![Main](docs/screenshots/main.png) | ![Logs](docs/screenshots/logs.png) |
 
 ---
 
@@ -217,6 +216,19 @@ NowPlaying/
 │   │   ├── CoreDataStack.swift       # Core Data setup
 │   │   └── ArtworkStore.swift        # Gerenciamento de capas
 │   │
+│   ├── DesignSystem/                 # Design System (NEW!)
+│   │   ├── Tokens/                   # Design tokens
+│   │   │   ├── Colors.swift
+│   │   │   ├── Typography.swift
+│   │   │   ├── Spacing.swift
+│   │   │   ├── Shadows.swift
+│   │   │   └── Animation.swift
+│   │   ├── Theme/                    # Theme system
+│   │   │   ├── Theme.swift
+│   │   │   └── ThemeManager.swift
+│   │   └── Guidelines/               # Documentação
+│   │       └── DESIGN_GUIDELINES.md
+│   │
 │   └── Tests/                        # Testes (em desenvolvimento)
 │       └── Mocks/                    # Mock implementations
 │           ├── MockLastFMClient.swift
@@ -250,7 +262,7 @@ NowPlaying/
 
 ### Arquitetura
 
-**Padrão**: Clean Architecture + MVVM
+**Padrão**: Clean Architecture + MVVM + Dependency Injection
 ```
 ┌─────────────────────────────────────────────┐
 │          Presentation Layer                 │
@@ -263,6 +275,7 @@ NowPlaying/
 │  - ScrobbleManager                          │
 │  - LastFMClient                             │
 │  - ConfigurationManager                     │
+│  - DependencyContainer (NEW!)               │
 └──────────────┬──────────────────────────────┘
                │
 ┌──────────────▼──────────────────────────────┐
@@ -286,46 +299,55 @@ NowPlaying/
 
 ## 📊 Status do Projeto
 
-> **Progresso**: 17% (5/30 atividades concluídas)
+> **Progresso**: 23% (6/30 atividades concluídas)
 
 ### FASE 1: FUNDAÇÃO E SEGURANÇA [██████████] 100% ✅
 
 Infraestrutura sólida e segura implementada com sucesso!
 
-✅ **v0.9.1** - Sistema de Configuração Seguro
+✅ **v0.9.1** - Sistema de Configuração Seguro (22 Out 2025)
 - ConfigurationManager centralizado
 - Secrets.xcconfig para credenciais
 - Validação automática
 
-✅ **v0.9.2** - Modernização do Keychain
+✅ **v0.9.2** - Modernização do Keychain (22 Out 2025)
 - KeychainService type-safe
 - Migração automática de dados antigos
 - Protocol-oriented design
 
-✅ **v0.9.3** - App Sandbox + Entitlements
+✅ **v0.9.3** - App Sandbox + Entitlements (22 Out 2025)
 - Sandbox habilitado
 - Entitlements mínimos
 - Pronto para Mac App Store
 
-✅ **v0.9.4** - Padrões Modernos Swift
+✅ **v0.9.4** - Padrões Modernos Swift (22 Out 2025)
 - async/await em todo código
 - Actors para thread-safety
 - Structured Concurrency
 - Zero data races possíveis
 
-✅ **v0.9.5** - Dependency Injection
+✅ **v0.9.5** - Dependency Injection (28 Out 2025)
 - DI Container implementado
 - Protocol-oriented refactoring
 - Mock implementations prontas
 - 100% testável
 
-### 🔮 Próximas Fases
+### FASE 2: INTERFACE LIQUID GLASS [██░░░░░░░░] 14% ⏳
 
-⏳ **FASE 2: INTERFACE LIQUID GLASS** (Q4 2025 - Q1 2026)
-- Design System completo
+Design System completo implementado! Componentes em desenvolvimento.
+
+✅ **v0.9.6** - Design System Foundation (31 Out 2025)
+- 100+ design tokens definidos
+- Colors, Typography, Spacing, Shadows, Animation
+- Theme System (Light + Dark)
+- ThemeManager com system appearance
+- DESIGN_GUIDELINES.md completo
+
+⏳ **v0.9.7** - Componentes Base (próxima)
+- GlassCard component
+- GlassButton component
+- GlassBadge component
 - Componentes reutilizáveis
-- Animações fluidas e modernas
-- Micro-interações polidas
 
 ⏳ **FASE 3: WIDGET DE DESKTOP** (Q1 2026)
 - WidgetKit implementation
@@ -355,14 +377,14 @@ Infraestrutura sólida e segura implementada com sucesso!
 
 ## 🗺️ Roadmap Detalhado
 
-### v0.9.6 - v0.9.9 (Q4 2025 - Q1 2026)
-**Interface Liquid Glass**
-- [ ] Design System tokens (cores, espaçamentos, tipografia)
-- [ ] Componentes base (Card, Button, Badge, etc)
-- [ ] Animações suaves (spring, ease-in-out)
-- [ ] Glassmorphism effects
-- [ ] Dark mode refinado
-- [ ] Acessibilidade (VoiceOver, Dynamic Type)
+### v0.9.7 - v0.9.12 (Q4 2025 - Q1 2026)
+**Interface Liquid Glass - Componentes e Refactoring**
+- [ ] v0.9.7: Componentes Base (GlassCard, GlassButton, etc)
+- [ ] v0.9.8: Glassmorphism Effects
+- [ ] v0.9.9: Animações e Transições
+- [ ] v0.9.10: Refactor Menu Bar Popover
+- [ ] v0.9.11: Refactor Janela Principal
+- [ ] v0.9.12: Polish Final + Dark Mode
 
 ### v1.0.0 (Q1 2026) 🎉
 **Release Oficial**
@@ -521,9 +543,9 @@ furnished to do so, subject to the following conditions:
 
 ## 📊 Estatísticas do Projeto
 ```
-Linhas de Código:      ~3.500
-Arquivos Swift:        ~25
-Commits:               ~50
+Linhas de Código:      ~6.000
+Arquivos Swift:        ~30
+Commits:               ~75
 Issues Fechados:       0 (projeto novo)
 Pull Requests:         0 (projeto novo)
 Contributors:          1
@@ -548,7 +570,8 @@ Estrelas GitHub:       0 (aguardando release)
 | App Sandbox | ✅ Completo | v0.9.3 | Habilitado e seguro |
 | Swift Concurrency | ✅ Completo | v0.9.4 | async/await, Actors |
 | Dependency Injection | ✅ Completo | v0.9.5 | DI Container + Mocks |
-| Liquid Glass UI | ⏳ Em Progresso | v0.9.6+ | Design System |
+| Design System | ✅ Completo | v0.9.6 | Tokens + Theme |
+| Liquid Glass UI | ⏳ Em Progresso | v0.9.7+ | Componentes |
 | Widget Desktop | 📋 Planejado | v1.0.0 | WidgetKit |
 | Estatísticas | 📋 Planejado | v1.0.0 | Gráficos e insights |
 | Testes Unitários | 📋 Planejado | v1.0.0 | 80%+ cobertura |
@@ -592,7 +615,7 @@ Estrelas GitHub:       0 (aguardando release)
 - ⚠️ Bug conhecido (v0.9.3)
 - ℹ️ Dados existem no Core Data
 - ℹ️ Não afeta scrobbling
-- 🔄 Será corrigido em v0.9.6
+- 🔄 Será corrigido em v0.9.7
 
 ---
 
@@ -600,9 +623,10 @@ Estrelas GitHub:       0 (aguardando release)
 
 ### Documentação Relacionada
 
-- [CHANGELOG.md](NowPlaying/Documentation/CHANGELOG.md) - Histórico completo de versões
-- [ARCHITECTURE.md](NowPlaying/Documentation/ARCHITECTURE.md) - Documentação técnica detalhada
-- [CONTRIBUTING.md](NowPlaying/Documentation/CONTRIBUTING.md) - Guia de contribuição (em breve)
+- [CHANGELOG.md](Documentation/CHANGELOG.md) - Histórico completo de versões
+- [ARCHITECTURE.md](Documentation/ARCHITECTURE.md) - Documentação técnica detalhada
+- [DESIGN_GUIDELINES.md](Sources/DesignSystem/Guidelines/DESIGN_GUIDELINES.md) - Guia do Design System
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Guia de contribuição (em breve)
 
 ### Links Externos
 
