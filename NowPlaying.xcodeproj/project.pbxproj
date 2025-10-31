@@ -13,6 +13,9 @@
 		9F349D922EB18A1100612B0E /* MockLastFMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349D912EB18A1100612B0E /* MockLastFMClient.swift */; };
 		9F349D972EB1920600612B0E /* mainwindow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F349D942EB1920600612B0E /* mainwindow.png */; };
 		9F349D982EB1920600612B0E /* popover.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F349D952EB1920600612B0E /* popover.png */; };
+		9F349D9E2EB4524300612B0E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349D9D2EB4524300612B0E /* Color.swift */; };
+		9F349DA12EB45D1F00612B0E /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349DA02EB45D1F00612B0E /* Typography.swift */; };
+		9F349DA32EB45E2500612B0E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349DA22EB45E2500612B0E /* Spacing.swift */; };
 		9F41EAFE2EAD3F780022F603 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EAC82EAD3F780022F603 /* README.md */; };
 		9F41EB2A2EAD3F780022F603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EA9F2EAD3F780022F603 /* Assets.xcassets */; };
 		9F41EB452EAD3F780022F603 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EA9D2EAD3F780022F603 /* CHANGELOG.md */; };
@@ -55,6 +58,9 @@
 		9F349D912EB18A1100612B0E /* MockLastFMClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLastFMClient.swift; sourceTree = "<group>"; };
 		9F349D942EB1920600612B0E /* mainwindow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainwindow.png; sourceTree = "<group>"; };
 		9F349D952EB1920600612B0E /* popover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popover.png; sourceTree = "<group>"; };
+		9F349D9D2EB4524300612B0E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		9F349DA02EB45D1F00612B0E /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		9F349DA22EB45E2500612B0E /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		9F3642A22E7E538B00D4E680 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F41EA982EAD3F780022F603 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9F41EA992EAD3F780022F603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -146,6 +152,40 @@
 				9F349D952EB1920600612B0E /* popover.png */,
 			);
 			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		9F349D992EB44FB600612B0E /* Guidelines */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Guidelines;
+			sourceTree = "<group>";
+		};
+		9F349D9A2EB44FB600612B0E /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		9F349D9B2EB44FB600612B0E /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				9F349DA22EB45E2500612B0E /* Spacing.swift */,
+				9F349DA02EB45D1F00612B0E /* Typography.swift */,
+				9F349D9D2EB4524300612B0E /* Color.swift */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		9F349D9C2EB44FB600612B0E /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				9F349D992EB44FB600612B0E /* Guidelines */,
+				9F349D9A2EB44FB600612B0E /* Theme */,
+				9F349D9B2EB44FB600612B0E /* Tokens */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 		9F3642992E7E538B00D4E680 = {
@@ -289,6 +329,7 @@
 			children = (
 				9F41EAAA2EAD3F780022F603 /* App */,
 				9F41EAC02EAD3F780022F603 /* Core */,
+				9F349D9C2EB44FB600612B0E /* DesignSystem */,
 				9F12A6052EAF07B100B8963D /* Tests */,
 			);
 			path = Sources;
@@ -448,10 +489,13 @@
 				9F41EB8A2EAD3F780022F603 /* NowPlayingApp.swift in Sources */,
 				9F41EB8B2EAD3F780022F603 /* Config.swift in Sources */,
 				9F41EB8C2EAD3F780022F603 /* Models.swift in Sources */,
+				9F349D9E2EB4524300612B0E /* Color.swift in Sources */,
+				9F349DA12EB45D1F00612B0E /* Typography.swift in Sources */,
 				9F41EB8D2EAD3F780022F603 /* KeychainItem.swift in Sources */,
 				9F12A6092EAF08BF00B8963D /* LastFMClientProtocol.swift in Sources */,
 				9F41EB8E2EAD3F780022F603 /* MusicEventListener.swift in Sources */,
 				9F349D902EB189CC00612B0E /* MockUsageExamples.swift in Sources */,
+				9F349DA32EB45E2500612B0E /* Spacing.swift in Sources */,
 				9F41EB8F2EAD3F780022F603 /* Date+Fmt.swift in Sources */,
 				9F41EB902EAD3F780022F603 /* ArtworkStore.swift in Sources */,
 				9F41EB912EAD3F780022F603 /* LaunchAtLoginManager.swift in Sources */,
@@ -592,7 +636,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F83F7B693P;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -638,7 +682,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F83F7B693P;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
