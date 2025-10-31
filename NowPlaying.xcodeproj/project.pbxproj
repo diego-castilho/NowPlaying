@@ -18,6 +18,9 @@
 		9F349DA32EB45E2500612B0E /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349DA22EB45E2500612B0E /* Spacing.swift */; };
 		9F349DA52EB45F0000612B0E /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349DA42EB45F0000612B0E /* Shadow.swift */; };
 		9F349DA72EB45F3200612B0E /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349DA62EB45F3200612B0E /* Animation.swift */; };
+		9F349DA92EB45FAC00612B0E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349DA82EB45FAC00612B0E /* Theme.swift */; };
+		9F349DAB2EB45FEB00612B0E /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F349DAA2EB45FEB00612B0E /* ThemeManager.swift */; };
+		9F349DAD2EB460D100612B0E /* DESIGN_GUIDELINES.md in Sources */ = {isa = PBXBuildFile; fileRef = 9F349DAC2EB460AA00612B0E /* DESIGN_GUIDELINES.md */; };
 		9F41EAFE2EAD3F780022F603 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EAC82EAD3F780022F603 /* README.md */; };
 		9F41EB2A2EAD3F780022F603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EA9F2EAD3F780022F603 /* Assets.xcassets */; };
 		9F41EB452EAD3F780022F603 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 9F41EA9D2EAD3F780022F603 /* CHANGELOG.md */; };
@@ -65,6 +68,9 @@
 		9F349DA22EB45E2500612B0E /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		9F349DA42EB45F0000612B0E /* Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		9F349DA62EB45F3200612B0E /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		9F349DA82EB45FAC00612B0E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9F349DAA2EB45FEB00612B0E /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		9F349DAC2EB460AA00612B0E /* DESIGN_GUIDELINES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DESIGN_GUIDELINES.md; sourceTree = "<group>"; };
 		9F3642A22E7E538B00D4E680 /* NowPlaying.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowPlaying.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F41EA982EAD3F780022F603 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9F41EA992EAD3F780022F603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 		9F349D992EB44FB600612B0E /* Guidelines */ = {
 			isa = PBXGroup;
 			children = (
+				9F349DAC2EB460AA00612B0E /* DESIGN_GUIDELINES.md */,
 			);
 			path = Guidelines;
 			sourceTree = "<group>";
@@ -168,6 +175,8 @@
 		9F349D9A2EB44FB600612B0E /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				9F349DAA2EB45FEB00612B0E /* ThemeManager.swift */,
+				9F349DA82EB45FAC00612B0E /* Theme.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -503,12 +512,15 @@
 				9F12A6092EAF08BF00B8963D /* LastFMClientProtocol.swift in Sources */,
 				9F41EB8E2EAD3F780022F603 /* MusicEventListener.swift in Sources */,
 				9F349D902EB189CC00612B0E /* MockUsageExamples.swift in Sources */,
+				9F349DAB2EB45FEB00612B0E /* ThemeManager.swift in Sources */,
 				9F349DA32EB45E2500612B0E /* Spacing.swift in Sources */,
 				9F41EB8F2EAD3F780022F603 /* Date+Fmt.swift in Sources */,
+				9F349DAD2EB460D100612B0E /* DESIGN_GUIDELINES.md in Sources */,
 				9F41EB902EAD3F780022F603 /* ArtworkStore.swift in Sources */,
 				9F41EB912EAD3F780022F603 /* LaunchAtLoginManager.swift in Sources */,
 				9F41EB922EAD3F780022F603 /* ContentView.swift in Sources */,
 				9F41EB932EAD3F780022F603 /* PreferencesView.swift in Sources */,
+				9F349DA92EB45FAC00612B0E /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,12 +1,4 @@
 //
-//  DesignAnimation.swift
-//  NowPlaying
-//
-//  Created by Diego Castilho on 31/10/25.
-//
-
-
-//
 //  Animation.swift
 //  NowPlaying
 //
