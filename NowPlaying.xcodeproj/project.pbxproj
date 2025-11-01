@@ -58,6 +58,7 @@
 		9FF3A8692EB684B200B1395B /* GlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8682EB684B200B1395B /* GlassButton.swift */; };
 		9FF3A86B2EB689D400B1395B /* GlassBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86A2EB689D400B1395B /* GlassBadge.swift */; };
 		9FF3A86D2EB68E5000B1395B /* GlassContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */; };
+		9FF3A86F2EB6905900B1395B /* GlassModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86E2EB6905900B1395B /* GlassModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		9FF3A8682EB684B200B1395B /* GlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassButton.swift; sourceTree = "<group>"; };
 		9FF3A86A2EB689D400B1395B /* GlassBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassBadge.swift; sourceTree = "<group>"; };
 		9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassContainer.swift; sourceTree = "<group>"; };
+		9FF3A86E2EB6905900B1395B /* GlassModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +433,7 @@
 		9FF3A8632EB682EE00B1395B /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				9FF3A86E2EB6905900B1395B /* GlassModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				9F349DAB2EB45FEB00612B0E /* ThemeManager.swift in Sources */,
 				9F349DA32EB45E2500612B0E /* Spacing.swift in Sources */,
 				9F41EB8F2EAD3F780022F603 /* Date+Fmt.swift in Sources */,
+				9FF3A86F2EB6905900B1395B /* GlassModifier.swift in Sources */,
 				9F349DAD2EB460D100612B0E /* DESIGN_GUIDELINES.md in Sources */,
 				9F41EB902EAD3F780022F603 /* ArtworkStore.swift in Sources */,
 				9F41EB912EAD3F780022F603 /* LaunchAtLoginManager.swift in Sources */,

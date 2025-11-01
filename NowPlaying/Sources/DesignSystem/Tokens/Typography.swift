@@ -223,23 +223,6 @@ extension View {
     }
 }
 
-// MARK: - Helper Extension
-
-extension View {
-    /// Helper condicional
-    @ViewBuilder
-    func `if`<Transform: View>(
-        _ condition: Bool,
-        transform: (Self) -> Transform
-    ) -> some View {
-        if condition {
-            transform(self)
-        } else {
-            self
-        }
-    }
-}
-
 // MARK: - Preview
 
 #if DEBUG
