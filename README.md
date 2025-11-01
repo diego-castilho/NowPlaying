@@ -11,7 +11,7 @@
 [![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/Platform-macOS%2012.0+-blue.svg)](https://www.apple.com/macos/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.9.6-purple.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.9.7-purple.svg)](CHANGELOG.md)
 
 [Features](#features) • [Instalação](#instalação) • [Desenvolvimento](#desenvolvimento) • [Arquitetura](#arquitetura) • [Roadmap](#roadmap)
 
@@ -27,7 +27,7 @@
 
 - 🚀 **Nativo e Rápido**: Desenvolvido 100% em Swift, sem frameworks pesados
 - 🔐 **Seguro**: App Sandbox habilitado, credenciais no Keychain
-- 🎨 **Interface Moderna**: Design limpo e minimalista (Liquid Glass em desenvolvimento)
+- 🎨 **Interface Moderna**: Design Liquid Glass com componentes reutilizáveis
 - ⚡ **Leve**: Mora na menu bar, consumo mínimo de recursos
 - 🔄 **Automático**: Scrobble sem intervenção, seguindo regras oficiais do Last.fm
 - 📊 **Histórico Completo**: Logs detalhados de todas as músicas
@@ -62,6 +62,7 @@
   - Tab com músicas recentes do Last.fm
   - Tab com histórico de scrobbles local
 - ✅ **Filtros e Busca**: Filtre por tipo, status, ou busque por texto
+- ✅ **Design Liquid Glass**: Interface moderna com glassmorphism
 
 ### 🔐 Segurança & Privacidade
 - ✅ **App Sandbox**: Isolamento completo do sistema
@@ -216,7 +217,7 @@ NowPlaying/
 │   │   ├── CoreDataStack.swift       # Core Data setup
 │   │   └── ArtworkStore.swift        # Gerenciamento de capas
 │   │
-│   ├── DesignSystem/                 # Design System (NEW!)
+│   ├── DesignSystem/                 # Design System ⭐ NEW!
 │   │   ├── Tokens/                   # Design tokens
 │   │   │   ├── Colors.swift
 │   │   │   ├── Typography.swift
@@ -226,6 +227,14 @@ NowPlaying/
 │   │   ├── Theme/                    # Theme system
 │   │   │   ├── Theme.swift
 │   │   │   └── ThemeManager.swift
+│   │   ├── Components/               # Componentes ⭐ NEW!
+│   │   │   ├── Base/
+│   │   │   │   ├── GlassCard.swift
+│   │   │   │   ├── GlassButton.swift
+│   │   │   │   ├── GlassBadge.swift
+│   │   │   │   └── GlassContainer.swift
+│   │   │   └── Modifiers/
+│   │   │       └── GlassModifiers.swift
 │   │   └── Guidelines/               # Documentação
 │   │       └── DESIGN_GUIDELINES.md
 │   │
@@ -259,6 +268,7 @@ NowPlaying/
 | **Concurrency** | Swift Concurrency | Swift 5.5+ | async/await, Actors |
 | **Networking** | URLSession | - | API Last.fm |
 | **System** | ServiceManagement | macOS 13+ | Launch at Login |
+| **Design** | Design System | Custom | Tokens + Components |
 
 ### Arquitetura
 
@@ -275,7 +285,7 @@ NowPlaying/
 │  - ScrobbleManager                          │
 │  - LastFMClient                             │
 │  - ConfigurationManager                     │
-│  - DependencyContainer (NEW!)               │
+│  - DependencyContainer                      │
 └──────────────┬──────────────────────────────┘
                │
 ┌──────────────▼──────────────────────────────┐
@@ -292,6 +302,7 @@ NowPlaying/
 - ✅ **Protocol-Oriented**: Interfaces claras, testáveis
 - ✅ **Dependency Injection**: Desacoplamento total
 - ✅ **Separation of Concerns**: Cada camada tem uma responsabilidade
+- ✅ **Design System**: Componentes reutilizáveis e consistentes
 
 > 📖 **Documentação Completa**: Veja [ARCHITECTURE.md](Documentation/ARCHITECTURE.md)
 
@@ -299,7 +310,7 @@ NowPlaying/
 
 ## 📊 Status do Projeto
 
-> **Progresso**: 23% (6/30 atividades concluídas)
+> **Progresso**: 30% (7/30 atividades concluídas)
 
 ### FASE 1: FUNDAÇÃO E SEGURANÇA [██████████] 100% ✅
 
@@ -332,9 +343,9 @@ Infraestrutura sólida e segura implementada com sucesso!
 - Mock implementations prontas
 - 100% testável
 
-### FASE 2: INTERFACE LIQUID GLASS [██░░░░░░░░] 14% ⏳
+### FASE 2: INTERFACE LIQUID GLASS [████░░░░░░] 29% ⏳
 
-Design System completo implementado! Componentes em desenvolvimento.
+Design System e componentes base implementados! Refactoring em progresso.
 
 ✅ **v0.9.6** - Design System Foundation (31 Out 2025)
 - 100+ design tokens definidos
@@ -343,11 +354,20 @@ Design System completo implementado! Componentes em desenvolvimento.
 - ThemeManager com system appearance
 - DESIGN_GUIDELINES.md completo
 
-⏳ **v0.9.7** - Componentes Base (próxima)
-- GlassCard component
-- GlassButton component
-- GlassBadge component
-- Componentes reutilizáveis
+✅ **v0.9.7** - Componentes Base (01 Nov 2025)
+- GlassCard: Card com glassmorphism
+- GlassButton: Botão interativo (5 estilos, 3 tamanhos)
+- GlassBadge: Badge de status (8 estilos)
+- GlassContainer: Container flexível (layouts V/H)
+- GlassModifiers: 9 view modifiers úteis
+- 50+ exemplos em previews
+- ~1.790 linhas de código
+
+⏳ **v0.9.8** - Glassmorphism Effects (próxima)
+- Blur effects avançados
+- Gradient overlays
+- Animated backgrounds
+- Visual polish
 
 ⏳ **FASE 3: WIDGET DE DESKTOP** (Q1 2026)
 - WidgetKit implementation
@@ -377,9 +397,8 @@ Design System completo implementado! Componentes em desenvolvimento.
 
 ## 🗺️ Roadmap Detalhado
 
-### v0.9.7 - v0.9.12 (Q4 2025 - Q1 2026)
-**Interface Liquid Glass - Componentes e Refactoring**
-- [ ] v0.9.7: Componentes Base (GlassCard, GlassButton, etc)
+### v0.9.8 - v0.9.12 (Q4 2025 - Q1 2026)
+**Interface Liquid Glass - Effects e Refactoring**
 - [ ] v0.9.8: Glassmorphism Effects
 - [ ] v0.9.9: Animações e Transições
 - [ ] v0.9.10: Refactor Menu Bar Popover
@@ -543,10 +562,10 @@ furnished to do so, subject to the following conditions:
 
 ## 📊 Estatísticas do Projeto
 ```
-Linhas de Código:      ~6.000
-Arquivos Swift:        ~30
-Commits:               ~75
-Issues Fechados:       0 (projeto novo)
+Linhas de Código:      ~7.800
+Arquivos Swift:        ~35
+Commits:               ~85
+Issues Fechados:       2 (bugs corrigidos)
 Pull Requests:         0 (projeto novo)
 Contributors:          1
 Estrelas GitHub:       0 (aguardando release)
@@ -571,7 +590,8 @@ Estrelas GitHub:       0 (aguardando release)
 | Swift Concurrency | ✅ Completo | v0.9.4 | async/await, Actors |
 | Dependency Injection | ✅ Completo | v0.9.5 | DI Container + Mocks |
 | Design System | ✅ Completo | v0.9.6 | Tokens + Theme |
-| Liquid Glass UI | ⏳ Em Progresso | v0.9.7+ | Componentes |
+| Componentes Base | ✅ Completo | v0.9.7 | 5 componentes glass |
+| Liquid Glass UI | ⏳ Em Progresso | v0.9.8+ | Effects + Refactor |
 | Widget Desktop | 📋 Planejado | v1.0.0 | WidgetKit |
 | Estatísticas | 📋 Planejado | v1.0.0 | Gráficos e insights |
 | Testes Unitários | 📋 Planejado | v1.0.0 | 80%+ cobertura |
@@ -615,7 +635,7 @@ Estrelas GitHub:       0 (aguardando release)
 - ⚠️ Bug conhecido (v0.9.3)
 - ℹ️ Dados existem no Core Data
 - ℹ️ Não afeta scrobbling
-- 🔄 Será corrigido em v0.9.7
+- 🔄 Será corrigido em v0.9.11
 
 ---
 

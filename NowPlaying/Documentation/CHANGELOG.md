@@ -7,6 +7,159 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [v0.9.7] - 01 de Novembro de 2025
+
+### 🎨 Componentes Base - COMPLETA!
+
+Componentes glassmorphism reutilizáveis prontos para uso em todo o aplicativo.
+
+#### ✨ Features
+
+**5 Componentes Base Criados**
+
+1. **GlassCard.swift** (~200 linhas)
+   - Card com efeito glassmorphism
+   - Props customizáveis (padding, cornerRadius, shadow, backgroundColor, etc)
+   - Enum ShadowType (.none, .subtle, .medium, .prominent, .custom)
+   - Flag useBlur para performance
+   - Convenience initializers (.default, .noBlur, .prominent, .subtle)
+   - Preview com 5 variantes + exemplo real
+
+2. **GlassButton.swift** (~340 linhas)
+   - Botão interativo com glassmorphism
+   - 5 estilos (.primary, .secondary, .subtle, .success, .destructive)
+   - 3 tamanhos (.small, .medium, .large)
+   - Suporte a ícones SF Symbols (leading/trailing)
+   - Estados hover e pressed com animações fluidas
+   - Estado disabled
+   - Sombras que respondem ao estado
+   - Scale effect ao pressionar (0.98)
+   - Convenience initializers para cada estilo
+   - Preview com 20+ exemplos
+
+3. **GlassBadge.swift** (~380 linhas)
+   - Badge de status com glassmorphism
+   - 8 estilos (.primary, .secondary, .success, .error, .warning, .info, .nowPlaying, .neutral)
+   - 3 tamanhos (.small, .medium, .large)
+   - Suporte a ícones SF Symbols
+   - Animação pulse (shouldPulse flag)
+   - Backgrounds semi-transparentes
+   - Bordas sutis combinando com foreground
+   - Convenience initializers (.nowPlaying, .success, .error, .scrobbled, .np, etc)
+   - Preview com 30+ exemplos + real use cases
+
+4. **GlassContainer.swift** (~420 linhas)
+   - Container genérico e flexível
+   - Layout vertical ou horizontal (axis)
+   - Espaçamento configurável
+   - Alinhamentos completos (leading, center, trailing, top, bottom)
+   - Padding customizável via EdgeInsets
+   - 3 estilos de background (.glass, .solid, .clear, .custom)
+   - 4 tipos de sombra (.none, .small, .medium, .large)
+   - Border opcional (showBorder flag)
+   - Convenience initializers (.horizontal, .noPadding, .noBorder, .solid)
+   - Totalmente composável
+   - Preview com 10+ exemplos + real use cases
+
+5. **GlassModifiers.swift** (~450 linhas)
+   - Coleção de 9 view modifiers úteis
+   - `.glassEffect()` - Transforma qualquer view em glass
+   - `.hoverEffect()` - Efeito hover com scale + brightness
+   - `.pressEffect()` - Efeito press com scale
+   - `.interactive()` - Hover + press combinados
+   - `.shimmer()` - Animação shimmer para loading
+   - `.pulse()` - Efeito pulse (bate-bate)
+   - `.glow()` - Brilho colorido ao redor
+   - `.cardStyle()` - Transforma em card rapidamente
+   - Composição fácil e type-safe
+   - Preview com 10+ exemplos
+
+#### 🏗️ Estrutura
+```
+DesignSystem/
+└── Components/
+    ├── Base/
+    │   ├── GlassCard.swift
+    │   ├── GlassButton.swift
+    │   ├── GlassBadge.swift
+    │   └── GlassContainer.swift
+    └── Modifiers/
+        └── GlassModifiers.swift
+```
+
+#### 🔧 Fixes
+
+- Correção de referências de gradiente no GlassCard preview
+- Remoção de redeclaração do modifier `.if()` (já existia em Typography.swift)
+
+#### 📊 Estatísticas
+
+- **Arquivos criados**: 5
+- **Linhas código**: ~1.790
+- **Componentes**: 5 completos
+- **View Modifiers**: 9 úteis
+- **Estilos/variações**: 20+
+- **Exemplos preview**: 50+
+- **Tempo desenvolvimento**: ~2.5 horas
+
+#### 🎯 Impacto
+
+**Componentes prontos para**:
+- ✅ Refatorar UI existente (menu bar, janela principal)
+- ✅ Criar novas telas com consistência
+- ✅ Interface Liquid Glass completa
+- ✅ Animações e interações fluidas
+- ✅ Composição fácil e intuitiva
+
+**Cada componente**:
+- ✅ Usa Design System tokens
+- ✅ Totalmente customizável
+- ✅ Preview detalhado
+- ✅ Documentação inline
+- ✅ Type-safe
+- ✅ Performance otimizada
+
+#### 💡 Exemplos de Uso
+```swift
+// Card simples
+GlassCard {
+    VStack {
+        Text("Title")
+        Text("Content")
+    }
+}
+
+// Botão interativo
+GlassButton.primary("Save", icon: "checkmark") {
+    save()
+}
+
+// Badge com pulse
+GlassBadge.nowPlaying() // Pulsa automaticamente
+
+// Container flexível
+GlassContainer.horizontal {
+    Text("Item 1")
+    Text("Item 2")
+}
+
+// Qualquer view vira glass
+Text("Hello")
+    .padding()
+    .glassEffect()
+    .interactive()
+```
+
+#### ⏭️ Próximo
+
+**v0.9.8**: Glassmorphism Effects
+- Blur effects avançados
+- Gradient overlays
+- Animated backgrounds
+- Visual polish
+
+---
+
 ## [v0.9.6] - 31 de Outubro de 2025
 
 ### 🎨 Design System Foundation - COMPLETA!
@@ -482,9 +635,10 @@ Primeira versão funcional completa do NowPlaying com scrobbling automático.
    ├─ v0.9.4: Swift Concurrency        ✅
    └─ v0.9.5: Dependency Injection     ✅
 
-⏳ FASE 2: INTERFACE LIQUID GLASS      [██░░░░░░░░] 14%
+⏳ FASE 2: INTERFACE LIQUID GLASS      [████░░░░░░] 29%
    ├─ v0.9.6: Design System Foundation ✅
-   └─ v0.9.7+: Componentes (próximo)
+   ├─ v0.9.7: Componentes Base         ✅
+   └─ v0.9.8+: Effects e Refactoring (próximo)
 
 ⏳ FASE 3: WIDGET DE DESKTOP           [░░░░░░░░░░]  0%
 ⏳ FASE 4: RECURSOS AVANÇADOS          [░░░░░░░░░░]  0%
@@ -494,13 +648,14 @@ Primeira versão funcional completa do NowPlaying com scrobbling automático.
 
 ### Estatísticas Gerais
 
-- **Progresso Total**: 23% (6/30 atividades)
-- **Versões Lançadas**: 6 (v1.4.0 + v0.9.1-v0.9.6)
-- **Linhas Código**: ~6.000
-- **Linhas Docs**: ~3.000
-- **Commits**: ~75
+- **Progresso Total**: 30% (7/30 atividades)
+- **Versões Lançadas**: 7 (v1.4.0 + v0.9.1-v0.9.7)
+- **Linhas Código**: ~7.800
+- **Linhas Docs**: ~3.500
+- **Commits**: ~85
 - **Tempo Total**: ~1 mês
-- **Bugs Introduzidos**: 0
+- **Bugs Introduzidos**: 2
+- **Bugs Corrigidos**: 2
 - **Regressões**: 0
 
 ### Métricas de Qualidade
@@ -524,4 +679,4 @@ Primeira versão funcional completa do NowPlaying com scrobbling automático.
 
 ---
 
-**Última Atualização**: 31 de Outubro de 2025
+**Última Atualização**: 01 de Novembro de 2025
