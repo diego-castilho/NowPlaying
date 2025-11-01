@@ -54,6 +54,7 @@
 		9F41EB932EAD3F780022F603 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41EAA82EAD3F780022F603 /* PreferencesView.swift */; };
 		9F4C57C72EA31C66000ED6A2 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4C57C62EA31C66000ED6A2 /* ServiceManagement.framework */; };
 		9F4C57C92EA31C6F000ED6A2 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4C57C82EA31C6F000ED6A2 /* CoreServices.framework */; };
+		9FF3A8672EB6833E00B1395B /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8662EB6833E00B1395B /* GlassCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,7 @@
 		9F41EAC82EAD3F780022F603 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9F4C57C62EA31C66000ED6A2 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		9F4C57C82EA31C6F000ED6A2 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		9FF3A8662EB6833E00B1395B /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				9F349D992EB44FB600612B0E /* Guidelines */,
 				9F349D9A2EB44FB600612B0E /* Theme */,
 				9F349D9B2EB44FB600612B0E /* Tokens */,
+				9FF3A8612EB682D600B1395B /* Components */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -399,6 +402,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9FF3A8612EB682D600B1395B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9FF3A8632EB682EE00B1395B /* Modifiers */,
+				9FF3A8622EB682E400B1395B /* Base */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		9FF3A8622EB682E400B1395B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9FF3A8662EB6833E00B1395B /* GlassCard.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		9FF3A8632EB682EE00B1395B /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -507,6 +534,7 @@
 				9F41EB8B2EAD3F780022F603 /* Config.swift in Sources */,
 				9F41EB8C2EAD3F780022F603 /* Models.swift in Sources */,
 				9F349D9E2EB4524300612B0E /* Color.swift in Sources */,
+				9FF3A8672EB6833E00B1395B /* GlassCard.swift in Sources */,
 				9F349DA12EB45D1F00612B0E /* Typography.swift in Sources */,
 				9F41EB8D2EAD3F780022F603 /* KeychainItem.swift in Sources */,
 				9F12A6092EAF08BF00B8963D /* LastFMClientProtocol.swift in Sources */,
