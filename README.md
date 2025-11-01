@@ -3,7 +3,7 @@
 <div align="center">
 
 <p align="center">
-  <img src="NowPlaying/Resources/Assets.xcassets/NowPlaying.png" alt="NowPlaying Icon" width="200"/>
+  <img src="https://github.com/diego-castilho/NowPlaying/blob/a0823592c43a4de49f1b6fad99baf57c1039ca99/NowPlaying/Resources/Assets.xcassets/AppIcon.appiconset/NowPlaying.png" alt="NowPlaying Icon" width="200"/>
 </p>
 
 **Scrobbler nativo e moderno para Last.fm no macOS**
@@ -36,9 +36,9 @@
 
 ## 🎬 Screenshots
 
-| Menu Bar Popover | Janela Principal | Histórico de Logs |
-|:---:|:---:|:---:|
-| ![Popover](docs/screenshots/popover.png) | ![Main](docs/screenshots/main.png) | ![Logs](docs/screenshots/logs.png) |
+| Menu Bar Popover | Janela Principal |
+|:---:|:---:|
+| ![Popover](https://github.com/diego-castilho/NowPlaying/blob/a0823592c43a4de49f1b6fad99baf57c1039ca99/NowPlaying/Documentation/Screenshots/popover.png) | ![Main](https://github.com/diego-castilho/NowPlaying/blob/a0823592c43a4de49f1b6fad99baf57c1039ca99/NowPlaying/Documentation/Screenshots/mainwindow.png) |
 
 ---
 
