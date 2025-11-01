@@ -57,6 +57,7 @@
 		9FF3A8672EB6833E00B1395B /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8662EB6833E00B1395B /* GlassCard.swift */; };
 		9FF3A8692EB684B200B1395B /* GlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8682EB684B200B1395B /* GlassButton.swift */; };
 		9FF3A86B2EB689D400B1395B /* GlassBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86A2EB689D400B1395B /* GlassBadge.swift */; };
+		9FF3A86D2EB68E5000B1395B /* GlassContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,7 @@
 		9FF3A8662EB6833E00B1395B /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		9FF3A8682EB684B200B1395B /* GlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassButton.swift; sourceTree = "<group>"; };
 		9FF3A86A2EB689D400B1395B /* GlassBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassBadge.swift; sourceTree = "<group>"; };
+		9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +420,7 @@
 		9FF3A8622EB682E400B1395B /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */,
 				9FF3A86A2EB689D400B1395B /* GlassBadge.swift */,
 				9FF3A8682EB684B200B1395B /* GlassButton.swift */,
 				9FF3A8662EB6833E00B1395B /* GlassCard.swift */,
@@ -538,6 +541,7 @@
 				9F349D922EB18A1100612B0E /* MockLastFMClient.swift in Sources */,
 				9F41EB882EAD3F780022F603 /* Crypto+MD5.swift in Sources */,
 				9F41EB892EAD3F780022F603 /* LastFMClient.swift in Sources */,
+				9FF3A86D2EB68E5000B1395B /* GlassContainer.swift in Sources */,
 				9F41EB8A2EAD3F780022F603 /* NowPlayingApp.swift in Sources */,
 				9F41EB8B2EAD3F780022F603 /* Config.swift in Sources */,
 				9F41EB8C2EAD3F780022F603 /* Models.swift in Sources */,
