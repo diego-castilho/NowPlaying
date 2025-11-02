@@ -61,6 +61,7 @@
 		9FF3A86F2EB6905900B1395B /* GlassModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86E2EB6905900B1395B /* GlassModifier.swift */; };
 		9FF3A8732EB6E6B000B1395B /* BlurStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8722EB6E6B000B1395B /* BlurStyle.swift */; };
 		9FF3A8752EB6E7EF00B1395B /* GradientEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8742EB6E7EF00B1395B /* GradientEffects.swift */; };
+		9FF3A8772EB6E94000B1395B /* BackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8762EB6E94000B1395B /* BackgroundStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +122,7 @@
 		9FF3A86E2EB6905900B1395B /* GlassModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassModifier.swift; sourceTree = "<group>"; };
 		9FF3A8722EB6E6B000B1395B /* BlurStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurStyle.swift; sourceTree = "<group>"; };
 		9FF3A8742EB6E7EF00B1395B /* GradientEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientEffects.swift; sourceTree = "<group>"; };
+		9FF3A8762EB6E94000B1395B /* BackgroundStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,6 +458,7 @@
 		9FF3A8712EB6E69700B1395B /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				9FF3A8762EB6E94000B1395B /* BackgroundStyle.swift */,
 			);
 			path = Backgrounds;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				9FF3A8752EB6E7EF00B1395B /* GradientEffects.swift in Sources */,
 				9F349D922EB18A1100612B0E /* MockLastFMClient.swift in Sources */,
 				9F41EB882EAD3F780022F603 /* Crypto+MD5.swift in Sources */,
+				9FF3A8772EB6E94000B1395B /* BackgroundStyle.swift in Sources */,
 				9F41EB892EAD3F780022F603 /* LastFMClient.swift in Sources */,
 				9FF3A86D2EB68E5000B1395B /* GlassContainer.swift in Sources */,
 				9F41EB8A2EAD3F780022F603 /* NowPlayingApp.swift in Sources */,
