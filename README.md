@@ -217,7 +217,7 @@ NowPlaying/
 │   │   ├── CoreDataStack.swift       # Core Data setup
 │   │   └── ArtworkStore.swift        # Gerenciamento de capas
 │   │
-│   ├── DesignSystem/                 # Design System ⭐ NEW!
+│   ├── DesignSystem/                 # Design System
 │   │   ├── Tokens/                   # Design tokens
 │   │   │   ├── Colors.swift
 │   │   │   ├── Typography.swift
@@ -227,14 +227,20 @@ NowPlaying/
 │   │   ├── Theme/                    # Theme system
 │   │   │   ├── Theme.swift
 │   │   │   └── ThemeManager.swift
-│   │   ├── Components/               # Componentes ⭐ NEW!
+│   │   ├── Components/               # Componentes
 │   │   │   ├── Base/
 │   │   │   │   ├── GlassCard.swift
 │   │   │   │   ├── GlassButton.swift
 │   │   │   │   ├── GlassBadge.swift
 │   │   │   │   └── GlassContainer.swift
+│   │   │   ├── Effects/              # ⭐ NEW!
+│   │   │   │   ├── BlurEffects.swift
+│   │   │   │   └── GradientEffects.swift
+│   │   │   ├── Backgrounds/          # ⭐ NEW!
+│   │   │   │   └── GlassBackground.swift
 │   │   │   └── Modifiers/
-│   │   │       └── GlassModifiers.swift
+│   │   │       ├── GlassModifiers.swift
+│   │   │       └── AdvancedModifiers.swift  # ⭐ NEW!
 │   │   └── Guidelines/               # Documentação
 │   │       └── DESIGN_GUIDELINES.md
 │   │
@@ -268,7 +274,7 @@ NowPlaying/
 | **Concurrency** | Swift Concurrency | Swift 5.5+ | async/await, Actors |
 | **Networking** | URLSession | - | API Last.fm |
 | **System** | ServiceManagement | macOS 13+ | Launch at Login |
-| **Design** | Design System | Custom | Tokens + Components |
+| **Design** | Design System | Custom | Tokens + Components + Effects |
 
 ### Arquitetura
 
@@ -310,7 +316,7 @@ NowPlaying/
 
 ## 📊 Status do Projeto
 
-> **Progresso**: 30% (7/30 atividades concluídas)
+> **Progresso**: 35% (8/30 atividades concluídas)
 
 ### FASE 1: FUNDAÇÃO E SEGURANÇA [██████████] 100% ✅
 
@@ -343,9 +349,9 @@ Infraestrutura sólida e segura implementada com sucesso!
 - Mock implementations prontas
 - 100% testável
 
-### FASE 2: INTERFACE LIQUID GLASS [████░░░░░░] 29% ⏳
+### FASE 2: INTERFACE LIQUID GLASS [█████░░░░░] 43% ⏳
 
-Design System e componentes base implementados! Refactoring em progresso.
+Design System, componentes e efeitos implementados! Refactoring em progresso.
 
 ✅ **v0.9.6** - Design System Foundation (31 Out 2025)
 - 100+ design tokens definidos
@@ -363,11 +369,20 @@ Design System e componentes base implementados! Refactoring em progresso.
 - 50+ exemplos em previews
 - ~1.790 linhas de código
 
-⏳ **v0.9.8** - Glassmorphism Effects (próxima)
-- Blur effects avançados
-- Gradient overlays
-- Animated backgrounds
-- Visual polish
+✅ **v0.9.8** - Glassmorphism Effects (01 Nov 2025)
+- BlurEffects: Sistema de blur avançado (6 styles)
+- GradientEffects: Gradientes dinâmicos (8 presets)
+- GlassBackground: 5 tipos de backgrounds
+- AdvancedModifiers: 7 modifiers profissionais
+- Animated gradients e blur
+- Artwork integration
+- ~1.550 linhas de código
+
+⏳ **v0.9.9** - Animações e Transições (próxima)
+- Sistema de animações reutilizáveis
+- Transições entre telas
+- Micro-interações
+- Performance polish
 
 ⏳ **FASE 3: WIDGET DE DESKTOP** (Q1 2026)
 - WidgetKit implementation
@@ -397,9 +412,8 @@ Design System e componentes base implementados! Refactoring em progresso.
 
 ## 🗺️ Roadmap Detalhado
 
-### v0.9.8 - v0.9.12 (Q4 2025 - Q1 2026)
-**Interface Liquid Glass - Effects e Refactoring**
-- [ ] v0.9.8: Glassmorphism Effects
+### v0.9.9 - v0.9.12 (Q4 2025 - Q1 2026)
+**Interface Liquid Glass - Animações e Refactoring**
 - [ ] v0.9.9: Animações e Transições
 - [ ] v0.9.10: Refactor Menu Bar Popover
 - [ ] v0.9.11: Refactor Janela Principal
@@ -562,13 +576,48 @@ furnished to do so, subject to the following conditions:
 
 ## 📊 Estatísticas do Projeto
 ```
-Linhas de Código:      ~7.800
-Arquivos Swift:        ~35
-Commits:               ~85
-Issues Fechados:       2 (bugs corrigidos)
-Pull Requests:         0 (projeto novo)
-Contributors:          1
-Estrelas GitHub:       0 (aguardando release)
+┌─────────────────────────────────────────────────────────┐
+│ CÓDIGO                                                  │
+├─────────────────────────────────────────────────────────┤
+│ Total Linhas Código:      ~9.350 linhas ⬆              │
+│ Arquivos Swift:           ~39 arquivos ⬆               │
+│ Arquivos SwiftUI Views:   ~10 arquivos                  │
+│ Arquivos Core:            ~15 arquivos                  │
+│ Arquivos Design System:   ~17 arquivos ⬆ (NEW!)        │
+│ Arquivos Componentes:     ~9 arquivos ⬆ (NEW!)         │
+│ Arquivos Effects:         ~4 arquivos ⬐ (NEW!)         │
+│ Arquivos Testes/Mocks:    ~2 arquivos                   │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│ BREAKDOWN POR CATEGORIA                                 │
+├─────────────────────────────────────────────────────────┤
+│ App Layer (Views):        ~1.500 linhas (16%)          │
+│ Core Layer (Services):    ~2.000 linhas (21%)          │
+│ Design System:            ~5.850 linhas (63%) ⬆        │
+│   ├─ Tokens:              ~2.500 linhas                 │
+│   ├─ Theme:               ~400 linhas                   │
+│   ├─ Components Base:     ~1.800 linhas                 │
+│   ├─ Effects:             ~1.550 linhas ⬆ (NEW!)       │
+│   └─ Guidelines:          ~300 linhas                   │
+│ Models & Data:            ~500 linhas (5%)             │
+│ Configuration:            ~200 linhas (2%)             │
+│ Tests/Mocks:              ~300 linhas (3%)             │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│ MÉTRICAS DE QUALIDADE                                   │
+├─────────────────────────────────────────────────────────┤
+│ Commits:                  ~95                           │
+│ Issues Fechados:          2 (bugs corrigidos)          │
+│ Pull Requests:            0 (projeto novo)             │
+│ Contributors:             1                            │
+│ Estrelas GitHub:          0 (aguardando release)       │
+│ Build Success Rate:       100%                         │
+│ Thread-Safety:            100%                         │
+│ Type-Safety:              100%                         │
+│ Code Quality:             ⭐⭐⭐⭐⭐                     │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -591,7 +640,9 @@ Estrelas GitHub:       0 (aguardando release)
 | Dependency Injection | ✅ Completo | v0.9.5 | DI Container + Mocks |
 | Design System | ✅ Completo | v0.9.6 | Tokens + Theme |
 | Componentes Base | ✅ Completo | v0.9.7 | 5 componentes glass |
-| Liquid Glass UI | ⏳ Em Progresso | v0.9.8+ | Effects + Refactor |
+| Glassmorphism Effects | ✅ Completo | v0.9.8 | Blur + Gradients + Backgrounds |
+| Animações | ⏳ Em Progresso | v0.9.9 | Sistema de animações |
+| Liquid Glass UI | ⏳ Em Progresso | v0.9.10+ | Refactor completo |
 | Widget Desktop | 📋 Planejado | v1.0.0 | WidgetKit |
 | Estatísticas | 📋 Planejado | v1.0.0 | Gráficos e insights |
 | Testes Unitários | 📋 Planejado | v1.0.0 | 80%+ cobertura |

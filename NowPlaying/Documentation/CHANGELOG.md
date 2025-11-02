@@ -7,6 +7,169 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [v0.9.8] - 01 de Novembro de 2025
+
+### 🎨 Glassmorphism Effects - COMPLETA!
+
+Sistema completo de efeitos visuais avançados para interface Liquid Glass.
+
+#### ✨ Features
+
+**4 Arquivos de Efeitos Criados**
+
+1. **BlurEffects.swift** (~300 linhas)
+   - Sistema avançado de blur para glassmorphism
+   - Enum BlurStyle (ultraThin, thin, regular, thick, ultraThick, adaptive)
+   - Material support (SwiftUI native materials)
+   - Manual blur radius support
+   - NoiseTextureGenerator para realismo visual
+   - NoiseBlurModifier combinando blur + texture
+   - AdaptiveBlurView com hover response
+   - View extensions (.styledBlur, .noiseBlur, .adaptiveBlur)
+   - Cache de noise texture para performance
+   - Preview com comparações side-by-side
+
+2. **GradientEffects.swift** (~400 linhas)
+   - Sistema completo de gradientes para backgrounds
+   - 8 presets predefinidos (music, accent, night, sunrise, ocean, forest, fire, status)
+   - Custom gradient support (.custom([Color]))
+   - StaticGradient (linear simples)
+   - AnimatedGradient (cores rotacionando automaticamente)
+   - RadialGradientView (centro para borda)
+   - AngularGradientView (cone/circular)
+   - MeshGradientView (macOS 15+ com fallback)
+   - GradientOverlayModifier para overlays em qualquer view
+   - ArtworkGradientExtractor (extrai cores dominantes)
+   - BlendMode support completo
+   - Preview com todos os tipos e presets
+
+3. **GlassBackground.swift** (~400 linhas)
+   - Componentes de background reutilizáveis
+   - GlassBackground (wrapper principal com 5 tipos)
+   - ArtworkBackgroundView (blur de artwork + overlay)
+   - GradientBackground (convenience wrapper)
+   - DynamicBackground (adapta ao ArtworkStore)
+   - LayeredBackground (múltiplas camadas com blend)
+   - MeshBackground (macOS 15+ com fallback)
+   - BackgroundContainer (background + content)
+   - ignoresSafeArea automático
+   - Smooth animations em transições
+   - Integration com ArtworkStore
+
+4. **AdvancedModifiers.swift** (~450 linhas)
+   - Modifiers avançados para efeitos visuais profissionais
+   - 7 modifiers novos:
+     * `.frostEffect()` - Glass pronunciado com tint e highlight
+     * `.depthEffect()` - Parallax depth com hover
+     * `.reflectionEffect()` - Light reflection animado
+     * `.artworkTint()` - Tint dinâmico de artwork
+     * `.glassBorder()` - Borda glass estilizada
+     * `.innerShadow()` - Sombra interna com gradient
+     * `.materialTint()` - Material com color overlay
+   - Hover interactions
+   - Spring animations
+   - State management interno
+   - Totalmente composable
+
+#### 🏗️ Estrutura
+```
+DesignSystem/
+└── Components/
+    ├── Base/
+    │   ├── GlassCard.swift
+    │   ├── GlassButton.swift
+    │   ├── GlassBadge.swift
+    │   └── GlassContainer.swift
+    │
+    ├── Effects/             ← NOVO
+    │   ├── BlurEffects.swift
+    │   └── GradientEffects.swift
+    │
+    ├── Backgrounds/         ← NOVO
+    │   └── GlassBackground.swift
+    │
+    └── Modifiers/
+        ├── GlassModifiers.swift
+        └── AdvancedModifiers.swift  ← NOVO
+```
+
+#### 📊 Estatísticas
+
+- **Arquivos criados**: 4
+- **Linhas código**: ~1.550
+- **Blur styles**: 6
+- **Gradient presets**: 8
+- **Background types**: 5
+- **Advanced modifiers**: 7
+- **Exemplos preview**: 40+
+- **Tempo desenvolvimento**: ~2.5 horas
+
+#### 🎯 Impacto
+
+**Efeitos Visuais Prontos**:
+- ✅ Blur system completo (ultraThin até adaptive)
+- ✅ Gradientes dinâmicos e animados
+- ✅ Backgrounds reutilizáveis (5 tipos)
+- ✅ 7 modifiers avançados
+- ✅ Artwork integration (blur + tint)
+- ✅ Animations e interactions
+- ✅ Professional polish
+
+**Cada componente**:
+- ✅ Performance otimizada
+- ✅ Preview detalhado
+- ✅ Documentação inline
+- ✅ Composable e reutilizável
+- ✅ Usa Design System tokens
+
+#### 💡 Exemplos de Uso
+```swift
+// Blur avançado
+RoundedRectangle(cornerRadius: 16)
+    .styledBlur(.thick)
+    .noiseBlur(intensity: 0.8, noise: 0.1)
+
+// Gradient animado
+AnimatedGradient(preset: .music, duration: 5.0)
+
+// Background dinâmico
+DynamicBackground(artwork: artworkStore)
+
+// Background layered
+LayeredBackground(base: .night, overlay: .fire)
+
+// Modifiers avançados
+VStack {
+    Text("Content")
+}
+.padding()
+.frostEffect(intensity: 0.8)
+.reflectionEffect(animated: true)
+.glassBorder(gradient: true)
+
+// Composição completa
+ZStack {
+    GlassBackground.animated(.accent)
+    
+    VStack {
+        Text("Professional UI")
+    }
+    .padding()
+    .frostEffect()
+    .depthEffect()
+}
+```
+
+#### ⏭️ Próximo
+
+**v0.9.9**: Animações e Transições
+- Sistema de animações reutilizáveis
+- Transições entre telas
+- Micro-interações
+- Performance optimization
+
+---
+
 ## [v0.9.7] - 01 de Novembro de 2025
 
 ### 🎨 Componentes Base - COMPLETA!
@@ -635,10 +798,14 @@ Primeira versão funcional completa do NowPlaying com scrobbling automático.
    ├─ v0.9.4: Swift Concurrency        ✅
    └─ v0.9.5: Dependency Injection     ✅
 
-⏳ FASE 2: INTERFACE LIQUID GLASS      [████░░░░░░] 29%
+⏳ FASE 2: INTERFACE LIQUID GLASS      [█████░░░░░] 43%
    ├─ v0.9.6: Design System Foundation ✅
    ├─ v0.9.7: Componentes Base         ✅
-   └─ v0.9.8+: Effects e Refactoring (próximo)
+   ├─ v0.9.8: Glassmorphism Effects    ✅
+   ├─ v0.9.9: Animações e Transições (próximo)
+   ├─ v0.9.10: Refactor Menu Bar
+   ├─ v0.9.11: Refactor Janela Principal
+   └─ v0.9.12: Polish Final + Dark Mode
 
 ⏳ FASE 3: WIDGET DE DESKTOP           [░░░░░░░░░░]  0%
 ⏳ FASE 4: RECURSOS AVANÇADOS          [░░░░░░░░░░]  0%
@@ -648,12 +815,12 @@ Primeira versão funcional completa do NowPlaying com scrobbling automático.
 
 ### Estatísticas Gerais
 
-- **Progresso Total**: 30% (7/30 atividades)
-- **Versões Lançadas**: 7 (v1.4.0 + v0.9.1-v0.9.7)
-- **Linhas Código**: ~7.800
+- **Progresso Total**: 35% (8/30 atividades)
+- **Versões Lançadas**: 8 (v1.4.0 + v0.9.1-v0.9.8)
+- **Linhas Código**: ~9.350
 - **Linhas Docs**: ~3.500
-- **Commits**: ~85
-- **Tempo Total**: ~1 mês
+- **Commits**: ~95
+- **Tempo Total**: ~140 horas
 - **Bugs Introduzidos**: 2
 - **Bugs Corrigidos**: 2
 - **Regressões**: 0
