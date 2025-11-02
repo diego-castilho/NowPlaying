@@ -60,6 +60,7 @@
 		9FF3A86D2EB68E5000B1395B /* GlassContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */; };
 		9FF3A86F2EB6905900B1395B /* GlassModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86E2EB6905900B1395B /* GlassModifier.swift */; };
 		9FF3A8732EB6E6B000B1395B /* BlurStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8722EB6E6B000B1395B /* BlurStyle.swift */; };
+		9FF3A8752EB6E7EF00B1395B /* GradientEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8742EB6E7EF00B1395B /* GradientEffects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassContainer.swift; sourceTree = "<group>"; };
 		9FF3A86E2EB6905900B1395B /* GlassModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassModifier.swift; sourceTree = "<group>"; };
 		9FF3A8722EB6E6B000B1395B /* BlurStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurStyle.swift; sourceTree = "<group>"; };
+		9FF3A8742EB6E7EF00B1395B /* GradientEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientEffects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +447,7 @@
 		9FF3A8702EB6E68E00B1395B /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				9FF3A8742EB6E7EF00B1395B /* GradientEffects.swift */,
 				9FF3A8722EB6E6B000B1395B /* BlurStyle.swift */,
 			);
 			path = Effects;
@@ -561,6 +564,7 @@
 				9F12A6072EAF07E600B8963D /* DependencyContainer.swift in Sources */,
 				9F41EB872EAD3F780022F603 /* ArtworkWidgetView.swift in Sources */,
 				9F349DA52EB45F0000612B0E /* Shadow.swift in Sources */,
+				9FF3A8752EB6E7EF00B1395B /* GradientEffects.swift in Sources */,
 				9F349D922EB18A1100612B0E /* MockLastFMClient.swift in Sources */,
 				9F41EB882EAD3F780022F603 /* Crypto+MD5.swift in Sources */,
 				9F41EB892EAD3F780022F603 /* LastFMClient.swift in Sources */,
