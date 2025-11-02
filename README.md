@@ -11,7 +11,7 @@
 [![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/Platform-macOS%2012.0+-blue.svg)](https://www.apple.com/macos/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.9.7-purple.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.9.8-purple.svg)](CHANGELOG.md)
 
 [Features](#features) • [Instalação](#instalação) • [Desenvolvimento](#desenvolvimento) • [Arquitetura](#arquitetura) • [Roadmap](#roadmap)
 
