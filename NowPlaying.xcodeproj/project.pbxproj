@@ -59,6 +59,7 @@
 		9FF3A86B2EB689D400B1395B /* GlassBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86A2EB689D400B1395B /* GlassBadge.swift */; };
 		9FF3A86D2EB68E5000B1395B /* GlassContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */; };
 		9FF3A86F2EB6905900B1395B /* GlassModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86E2EB6905900B1395B /* GlassModifier.swift */; };
+		9FF3A8732EB6E6B000B1395B /* BlurStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8722EB6E6B000B1395B /* BlurStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		9FF3A86A2EB689D400B1395B /* GlassBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassBadge.swift; sourceTree = "<group>"; };
 		9FF3A86C2EB68E5000B1395B /* GlassContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassContainer.swift; sourceTree = "<group>"; };
 		9FF3A86E2EB6905900B1395B /* GlassModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassModifier.swift; sourceTree = "<group>"; };
+		9FF3A8722EB6E6B000B1395B /* BlurStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,8 @@
 		9F349D9C2EB44FB600612B0E /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				9FF3A8712EB6E69700B1395B /* Backgrounds */,
+				9FF3A8702EB6E68E00B1395B /* Effects */,
 				9F349D992EB44FB600612B0E /* Guidelines */,
 				9F349D9A2EB44FB600612B0E /* Theme */,
 				9F349D9B2EB44FB600612B0E /* Tokens */,
@@ -438,6 +442,21 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		9FF3A8702EB6E68E00B1395B /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				9FF3A8722EB6E6B000B1395B /* BlurStyle.swift */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
+		9FF3A8712EB6E69700B1395B /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Backgrounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -528,6 +547,7 @@
 				9F41EB7C2EAD3F780022F603 /* KeychainHelper.swift in Sources */,
 				9F41EB7D2EAD3F780022F603 /* KeychainError.swift in Sources */,
 				9F41EB7E2EAD3F780022F603 /* LogListView.swift in Sources */,
+				9FF3A8732EB6E6B000B1395B /* BlurStyle.swift in Sources */,
 				9F41EB7F2EAD3F780022F603 /* KeychainService.swift in Sources */,
 				9F41EB802EAD3F780022F603 /* CoreDataStack.swift in Sources */,
 				9F349DA72EB45F3200612B0E /* Animation.swift in Sources */,
@@ -724,7 +744,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 0.9.7;
+				MARKETING_VERSION = 0.9.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diegocastilho.NowPlaying;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -770,7 +790,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 0.9.7;
+				MARKETING_VERSION = 0.9.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diegocastilho.NowPlaying;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
