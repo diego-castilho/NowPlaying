@@ -106,7 +106,7 @@ struct DepthEffectModifier: ViewModifier {
         .onContinuousHover { phase in
             switch phase {
             case .active(let location):
-                withAnimation(DesignAnimation.spring) {
+                withAnimation(DesignAnimation.bouncy) {
                     // Calcula offset baseado na posição do mouse
                     // Simplificado - em produção usaria geometry reader
                     hoverOffset = CGSize(
@@ -115,7 +115,7 @@ struct DepthEffectModifier: ViewModifier {
                     )
                 }
             case .ended:
-                withAnimation(DesignAnimation.spring) {
+                withAnimation(DesignAnimation.bouncy) {
                     hoverOffset = .zero
                 }
             }
