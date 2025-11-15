@@ -54,6 +54,10 @@
 		9F41EB932EAD3F780022F603 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41EAA82EAD3F780022F603 /* PreferencesView.swift */; };
 		9F4C57C72EA31C66000ED6A2 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4C57C62EA31C66000ED6A2 /* ServiceManagement.framework */; };
 		9F4C57C92EA31C6F000ED6A2 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4C57C82EA31C6F000ED6A2 /* CoreServices.framework */; };
+		9FB9D5FA2EC7F354008CC099 /* AnimationPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9D5F92EC7F354008CC099 /* AnimationPreset.swift */; };
+		9FB9D5FC2EC7F442008CC099 /* TransitionPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9D5FB2EC7F442008CC099 /* TransitionPreset.swift */; };
+		9FB9D5FE2EC804F7008CC099 /* MicroInteractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9D5FD2EC804F7008CC099 /* MicroInteractions.swift */; };
+		9FB9D6002EC80634008CC099 /* AnimatedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9D5FF2EC80634008CC099 /* AnimatedComponents.swift */; };
 		9FF3A8672EB6833E00B1395B /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8662EB6833E00B1395B /* GlassCard.swift */; };
 		9FF3A8692EB684B200B1395B /* GlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8682EB684B200B1395B /* GlassButton.swift */; };
 		9FF3A86B2EB689D400B1395B /* GlassBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86A2EB689D400B1395B /* GlassBadge.swift */; };
@@ -116,6 +120,10 @@
 		9F41EAC82EAD3F780022F603 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9F4C57C62EA31C66000ED6A2 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		9F4C57C82EA31C6F000ED6A2 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		9FB9D5F92EC7F354008CC099 /* AnimationPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationPreset.swift; sourceTree = "<group>"; };
+		9FB9D5FB2EC7F442008CC099 /* TransitionPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionPreset.swift; sourceTree = "<group>"; };
+		9FB9D5FD2EC804F7008CC099 /* MicroInteractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroInteractions.swift; sourceTree = "<group>"; };
+		9FB9D5FF2EC80634008CC099 /* AnimatedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponents.swift; sourceTree = "<group>"; };
 		9FF3A8662EB6833E00B1395B /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		9FF3A8682EB684B200B1395B /* GlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassButton.swift; sourceTree = "<group>"; };
 		9FF3A86A2EB689D400B1395B /* GlassBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassBadge.swift; sourceTree = "<group>"; };
@@ -420,9 +428,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9FB9D5F82EC7F327008CC099 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				9FB9D5FF2EC80634008CC099 /* AnimatedComponents.swift */,
+				9FB9D5FD2EC804F7008CC099 /* MicroInteractions.swift */,
+				9FB9D5FB2EC7F442008CC099 /* TransitionPreset.swift */,
+				9FB9D5F92EC7F354008CC099 /* AnimationPreset.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		9FF3A8612EB682D600B1395B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				9FB9D5F82EC7F327008CC099 /* Animations */,
 				9FF3A8632EB682EE00B1395B /* Modifiers */,
 				9FF3A8622EB682E400B1395B /* Base */,
 			);
@@ -560,13 +580,16 @@
 				9F41EB7F2EAD3F780022F603 /* KeychainService.swift in Sources */,
 				9F41EB802EAD3F780022F603 /* CoreDataStack.swift in Sources */,
 				9F349DA72EB45F3200612B0E /* Animation.swift in Sources */,
+				9FB9D5FC2EC7F442008CC099 /* TransitionPreset.swift in Sources */,
 				9F41EB812EAD3F780022F603 /* KeychainServiceProtocol.swift in Sources */,
 				9F41EB822EAD3F780022F603 /* LaunchAtLoginManagerSimplified.swift in Sources */,
+				9FB9D6002EC80634008CC099 /* AnimatedComponents.swift in Sources */,
 				9FF3A86B2EB689D400B1395B /* GlassBadge.swift in Sources */,
 				9F41EB832EAD3F780022F603 /* ScrobbleManager.swift in Sources */,
 				9F41EB842EAD3F780022F603 /* ConfigurationManager.swift in Sources */,
 				9F41EB852EAD3F780022F603 /* RecentTracksView.swift in Sources */,
 				9F41EB862EAD3F780022F603 /* LaunchAtLoginTestInterface.swift in Sources */,
+				9FB9D5FA2EC7F354008CC099 /* AnimationPreset.swift in Sources */,
 				9F12A6072EAF07E600B8963D /* DependencyContainer.swift in Sources */,
 				9F41EB872EAD3F780022F603 /* ArtworkWidgetView.swift in Sources */,
 				9F349DA52EB45F0000612B0E /* Shadow.swift in Sources */,
@@ -594,6 +617,7 @@
 				9F349DAD2EB460D100612B0E /* DESIGN_GUIDELINES.md in Sources */,
 				9F41EB902EAD3F780022F603 /* ArtworkStore.swift in Sources */,
 				9F41EB912EAD3F780022F603 /* LaunchAtLoginManager.swift in Sources */,
+				9FB9D5FE2EC804F7008CC099 /* MicroInteractions.swift in Sources */,
 				9F41EB922EAD3F780022F603 /* ContentView.swift in Sources */,
 				9F41EB932EAD3F780022F603 /* PreferencesView.swift in Sources */,
 				9F349DA92EB45FAC00612B0E /* Theme.swift in Sources */,

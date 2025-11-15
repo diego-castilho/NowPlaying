@@ -6,7 +6,7 @@
 //  Modifiers avançados para efeitos visuais profissionais
 //
 //  Created by Diego Castilho on 01/11/25
-//  Copyright © 2025 Diego Castilho. All rights reserved.//
+//  Copyright © 2025 Diego Castilho. All rights reserved.
 //
 
 import SwiftUI
