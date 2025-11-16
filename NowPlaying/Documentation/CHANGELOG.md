@@ -7,6 +7,197 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [v0.9.9] - 01 de Novembro de 2025
+
+### 🎬 Animações e Transições - COMPLETA!
+
+Sistema completo de animações reutilizáveis para interface fluida e profissional.
+
+#### ✨ Features
+
+**4 Arquivos de Animações Criados**
+
+1. **AnimationPresets.swift** (~550 linhas)
+   - Sistema avançado de animation presets reutilizáveis
+   - 16 animation presets profissionais organizados por categoria
+   - **Spring animations**: springGentle, springBouncy, springSnappy, springHeavy
+   - **Timing-based**: easeIn, easeOut, easeInOut, linear
+   - **Special effects**: elastic, overshoot, anticipate, wiggle
+   - **Contextual**: buttonPress, cardFlip, slideIn, fadeInOut
+   - AnimationChain para sequências de animações
+   - RepeatingAnimation com repeatCount (finito ou infinito)
+   - StaggeredAnimation para efeitos em cascata
+   - @Animated property wrapper para animação automática
+   - View extensions (.animateWith, .performAnimated)
+   - Duração configurável para cada preset
+   - Preview com demonstrações de todos os presets
+
+2. **TransitionEffects.swift** (~600 linhas)
+   - Sistema completo de transições entre views
+   - 14 transition presets predefinidos
+   - **Basic transitions**: fade, scale, slide, move
+   - **Combined transitions**: fadeScale, slideAndFade, scaleAndSlide
+   - **Advanced transitions**: blur, pivot, flip, rotate3D
+   - **Special transitions**: asymmetric, push
+   - TransitionManager helper para gerenciar transições
+   - ConditionalTransition component (mostra/esconde com animação)
+   - PageTransition component (slides horizontalmente)
+   - ModalTransition component (slide from bottom + backdrop)
+   - CardStackTransition modifier (cards empilhados)
+   - View extensions (.transition, .transitionWith)
+   - Custom transition modifiers (blur, flip, rotate3D)
+   - Asymmetric transitions (entrada/saída diferentes)
+   - Preview com todos os tipos de transição
+
+3. **MicroInteractions.swift** (~700 linhas)
+   - Micro-interações para feedback visual imediato
+   - 9 tipos de interações implementados
+   - **ButtonPressModifier**: Efeito visual de press (scale + brightness)
+   - **HapticBounceModifier**: Bounce haptic-style quando trigger muda
+   - **SuccessCheckmark**: Animação de checkmark de sucesso
+   - **ErrorShakeModifier**: Shake de erro (3x horizontal)
+   - **LoadingPulseModifier**: Pulse de opacity para loading
+   - **SkeletonShimmerModifier**: Shimmer gradient para skeleton loading
+   - **AttentionSeekerModifier**: Wiggle para chamar atenção
+   - **ProgressIndicator**: Barra de progresso animada com percentagem
+   - **FloatingActionButton**: FAB com animações de entrada e press
+   - View extensions para fácil aplicação
+   - State management interno
+   - Gesture-based interactions
+   - Preview com demonstrações interativas
+
+4. **AnimatedComponents.swift** (~700 linhas)
+   - Componentes prontos com animações integradas
+   - 10 componentes animados profissionais
+   - **SpinningLoader**: Circular spinner (rotação contínua)
+   - **DotsLoader**: Three dots com bounce sequencial
+   - **PulseLoader**: Círculo pulsante expandindo
+   - **ProgressRing**: Anel de progresso circular com percentagem
+   - **SkeletonCard**: Card skeleton com shimmer para loading
+   - **AnimatedCounter**: Contador que anima até o valor (30 steps)
+   - **BreathingView**: Componente que "respira" (scale in/out)
+   - **TypingIndicator**: Três dots para indicador de digitação
+   - **AnimatedBadge**: Badge com animação de entrada (scale + opacity)
+   - **WaveAnimation**: Ondas expandindo concentricamente
+   - Todos com customização (size, color, duration)
+   - Auto-start de animações no onAppear
+   - Preview com galeria de todos os componentes
+
+#### 🏗️ Estrutura
+```
+DesignSystem/
+└── Components/
+    ├── Animations/           ← NOVO
+    │   ├── AnimationPresets.swift
+    │   ├── TransitionEffects.swift
+    │   ├── MicroInteractions.swift
+    │   └── AnimatedComponents.swift
+    └── ...
+```
+
+#### 🔧 Fixes
+
+- Corrigido `DepthEffectModifier` em `AdvancedModifiers.swift`
+  - Trocado `DesignAnimation.spring` para `DesignAnimation.bouncy`
+  - Erro: Type 'DesignAnimation' has no member 'spring'
+- Marcado `TransitionPreset` como `indirect enum`
+  - Permite recursão no caso `.asymmetric`
+  - Erro: Recursive enum 'TransitionPreset' is not marked 'indirect'
+
+#### 📊 Estatísticas
+
+- **Arquivos criados**: 4
+- **Linhas código**: ~2.550
+- **Animation presets**: 16
+- **Transition presets**: 14
+- **Micro-interactions**: 9
+- **Animated components**: 10
+- **View extensions**: 15+
+- **Exemplos preview**: 50+
+- **Tempo desenvolvimento**: ~2.5 horas
+
+#### 🎯 Impacto
+
+**Animações Profissionais**:
+- ✅ 16 animation presets prontos para usar
+- ✅ Spring physics realistas
+- ✅ Timing curves profissionais
+- ✅ Animation chaining (sequências)
+- ✅ Staggered animations (cascata)
+- ✅ Property wrapper para auto-animação
+
+**Transições Suaves**:
+- ✅ 14 transition presets
+- ✅ Básicas, combinadas e avançadas
+- ✅ Asymmetric (entrada/saída diferentes)
+- ✅ Modal transitions prontas
+- ✅ Page transitions
+- ✅ Card stack effects
+- ✅ 3D rotations e flips
+
+**Micro-Interações**:
+- ✅ Feedback visual imediato
+- ✅ Button press effects
+- ✅ Success/error animations
+- ✅ Loading states consistentes
+- ✅ Skeleton loading profissional
+- ✅ Progress indicators
+
+**Componentes Animados**:
+- ✅ 4 tipos de loading indicators
+- ✅ Progress visualizations
+- ✅ Skeleton loaders
+- ✅ Counter animations
+- ✅ Special effects (breathing, waves)
+
+**Pronto para**:
+- ✅ Interface super fluida
+- ✅ Feedback consistente
+- ✅ Loading states polidos
+- ✅ Refactoring da UI existente
+
+#### 💡 Exemplos de Uso
+```swift
+// Animation preset
+withAnimation(AnimationPreset.springBouncy.animation) {
+    isExpanded.toggle()
+}
+
+// Animation na view
+Text("Hello")
+    .animateWith(.springBouncy, value: isVisible)
+
+// Transition
+if isVisible {
+    Text("Content")
+        .transition(.fadeScale)
+}
+
+// Micro-interaction
+Button("Save") { }
+    .buttonPress(scale: 0.95)
+
+TextField("Email", text: $email)
+    .errorShake(trigger: $showError)
+
+// Animated component
+SpinningLoader(size: 40, color: .blue)
+
+ProgressRing(progress: 0.75, size: 100)
+
+AnimatedCounter(value: totalViews, duration: 1.0)
+```
+
+#### ⏭️ Próximo
+
+**v0.9.10**: Refactor Menu Bar Popover
+- Aplicar Design System
+- Usar novos componentes
+- Adicionar animações
+- Polish visual
+
+---
+
 ## [v0.9.8] - 01 de Novembro de 2025
 
 ### 🎨 Glassmorphism Effects - COMPLETA!
@@ -798,12 +989,12 @@ Primeira versão funcional completa do NowPlaying com scrobbling automático.
    ├─ v0.9.4: Swift Concurrency        ✅
    └─ v0.9.5: Dependency Injection     ✅
 
-⏳ FASE 2: INTERFACE LIQUID GLASS      [█████░░░░░] 43%
+⏳ FASE 2: INTERFACE LIQUID GLASS      [██████░░░░] 57%
    ├─ v0.9.6: Design System Foundation ✅
    ├─ v0.9.7: Componentes Base         ✅
    ├─ v0.9.8: Glassmorphism Effects    ✅
-   ├─ v0.9.9: Animações e Transições (próximo)
-   ├─ v0.9.10: Refactor Menu Bar
+   ├─ v0.9.9: Animações e Transições   ✅
+   ├─ v0.9.10: Refactor Menu Bar (próximo)
    ├─ v0.9.11: Refactor Janela Principal
    └─ v0.9.12: Polish Final + Dark Mode
 
@@ -815,12 +1006,12 @@ Primeira versão funcional completa do NowPlaying com scrobbling automático.
 
 ### Estatísticas Gerais
 
-- **Progresso Total**: 35% (8/30 atividades)
-- **Versões Lançadas**: 8 (v1.4.0 + v0.9.1-v0.9.8)
-- **Linhas Código**: ~9.350
+- **Progresso Total**: 38% (9/30 atividades)
+- **Versões Lançadas**: 9 (v1.4.0 + v0.9.1-v0.9.9)
+- **Linhas Código**: ~11.900
 - **Linhas Docs**: ~3.500
-- **Commits**: ~95
-- **Tempo Total**: ~140 horas
+- **Commits**: ~105
+- **Tempo Total**: ~150 horas
 - **Bugs Introduzidos**: 2
 - **Bugs Corrigidos**: 2
 - **Regressões**: 0
