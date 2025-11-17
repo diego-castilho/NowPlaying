@@ -219,50 +219,117 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     }
 }
 
-// Popover content
+// MARK: - Menu Bar Panel View
+
+/// Popover content - Liquid Glass Version
 struct MenuBarPanelView: View {
     let core: CoreDataStack
     @ObservedObject var lastfm: LastFMClient
     @ObservedObject var artwork: ArtworkStore
     
+    @State private var isHoveringOpen = false
+    @State private var isHoveringPrefs = false
+    @State private var isHoveringQuit = false
+    
     init(core: CoreDataStack, lastfm: LastFMClient, artwork: ArtworkStore) {
-        self.core = core; self.lastfm = lastfm; self.artwork = artwork
+        self.core = core
+        self.lastfm = lastfm
+        self.artwork = artwork
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            ArtworkWidgetView(artwork: artwork)
+        ZStack {
+            // Background dinâmico
+            DynamicBackground(artwork: artwork)
+                .ignoresSafeArea()
             
-            HStack {
-                Button {
-                    AppDelegate.shared?.openMainWindow()
-                } label: {
-                    Label("Abrir janela", systemImage: "rectangle.and.arrow.up.right")
-                }
+            // Content
+            VStack(alignment: .leading, spacing: DesignSpacing.md) {
+                // Artwork Widget
+                ArtworkWidgetView(artwork: artwork)
+                    .transition(TransitionPreset.fadeScale.transition)
                 
-                Button {
-                    AppDelegate.shared?.openPreferences()
-                } label: {
-                    Label("Preferências", systemImage: "gear")
-                }
-                
-                Spacer()
-                Button {
-                    let alert = NSAlert()
-                    alert.messageText = "Sair do Now Playing?"
-                    alert.informativeText = "Tem certeza que deseja encerrar o aplicativo?"
-                    alert.alertStyle = .warning
-                    alert.addButton(withTitle: "Sair")
-                    alert.addButton(withTitle: "Cancelar")
-                    let response = alert.runModal()
-                    if response == .alertFirstButtonReturn { NSApp.terminate(nil) }
-                    else { AppDelegate.shared?.closePopover() }
-                } label: {
-                    Label("Sair", systemImage: "power")
-                }
+                // Actions
+                actionButtons
+                    .transition(TransitionPreset.slideAndFade(edge: .bottom).transition)
             }
+            .padding(DesignSpacing.md)
         }
-        .padding(8)
-        .frame(width: 520)
+        .frame(width: 480, height: 220)
+    }
+    
+    // MARK: - Subviews
+    
+    @ViewBuilder
+    private var actionButtons: some View {
+        HStack(spacing: DesignSpacing.sm) {
+            // Abrir janela
+            GlassButton(
+                "Abrir",
+                icon: "rectangle.and.arrow.up.right",
+                style: .primary,
+                size: .small
+            ) {
+                AppDelegate.shared?.openMainWindow()
+            }
+            .hoverEffect(isHovered: isHoveringOpen)
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in isHoveringOpen = true }
+                    .onEnded { _ in isHoveringOpen = false }
+            )
+            
+            // Preferências
+            GlassButton(
+                "Preferências",
+                icon: "gear",
+                style: .secondary,
+                size: .small
+            ) {
+                AppDelegate.shared?.openPreferences()
+            }
+            .hoverEffect(isHovered: isHoveringPrefs)
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in isHoveringPrefs = true }
+                    .onEnded { _ in isHoveringPrefs = false }
+            )
+            
+            Spacer()
+            
+            // Sair
+            GlassButton(
+                "Sair",
+                icon: "power",
+                style: .destructive,
+                size: .small
+            ) {
+                showQuitConfirmation()
+            }
+            .hoverEffect(isHovered: isHoveringQuit)
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in isHoveringQuit = true }
+                    .onEnded { _ in isHoveringQuit = false }
+            )
+        }
+    }
+    
+    // MARK: - Actions
+    
+    private func showQuitConfirmation() {
+        let alert = NSAlert()
+        alert.messageText = "Sair do Now Playing?"
+        alert.informativeText = "Tem certeza que deseja encerrar o aplicativo?"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Sair")
+        alert.addButton(withTitle: "Cancelar")
+        
+        let response = alert.runModal()
+        if response == .alertFirstButtonReturn {
+            NSApp.terminate(nil)
+        } else {
+            AppDelegate.shared?.closePopover()
+        }
     }
 }
