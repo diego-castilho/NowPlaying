@@ -63,6 +63,7 @@
   - Tab com histórico de scrobbles local
 - ✅ **Filtros e Busca**: Filtre por tipo, status, ou busque por texto
 - ✅ **Design Liquid Glass**: Interface moderna com glassmorphism
+- ✅ **Dark Mode**: Suporte completo Light + Dark
 
 ### 🔐 Segurança & Privacidade
 - ✅ **App Sandbox**: Isolamento completo do sistema
@@ -233,20 +234,18 @@ NowPlaying/
 │   │   │   │   ├── GlassCard.swift
 │   │   │   │   ├── GlassButton.swift
 │   │   │   │   ├── GlassBadge.swift
-│   │   │   │   └── GlassContainer.swift
+│   │   │   │   ├── GlassContainer.swift
+│   │   │   │   └── GlassModifiers.swift
 │   │   │   ├── Effects/
 │   │   │   │   ├── BlurEffects.swift
-│   │   │   │   └── GradientEffects.swift
-│   │   │   ├── Backgrounds/
-│   │   │   │   └── GlassBackground.swift
-│   │   │   ├── Animations/
-│   │   │   │   ├── AnimationPresets.swift
-│   │   │   │   ├── TransitionEffects.swift
-│   │   │   │   ├── MicroInteractions.swift
-│   │   │   │   └── AnimatedComponents.swift
-│   │   │   └── Modifiers/
-│   │   │       ├── GlassModifiers.swift
-│   │   │       └── AdvancedModifiers.swift
+│   │   │   │   ├── GradientEffects.swift
+│   │   │   │   ├── GlassBackground.swift
+│   │   │   │   └── AdvancedModifiers.swift
+│   │   │   └── Animations/
+│   │   │       ├── AnimationPresets.swift
+│   │   │       ├── TransitionEffects.swift
+│   │   │       ├── MicroInteractions.swift
+│   │   │       └── AnimatedComponents.swift
 │   │   └── Guidelines/               # Documentação
 │   │       └── DESIGN_GUIDELINES.md
 │   │
@@ -322,7 +321,7 @@ NowPlaying/
 
 ## 📊 Status do Projeto
 
-> **Progresso**: 42% (10/30 atividades concluídas)
+> **Progresso**: 46% (12/30 atividades concluídas)
 
 ### FASE 1: FUNDAÇÃO E SEGURANÇA [██████████] 100% ✅
 
@@ -355,9 +354,9 @@ Infraestrutura sólida e segura implementada com sucesso!
 - Mock implementations prontas
 - 100% testável
 
-### FASE 2: INTERFACE LIQUID GLASS [███████░░░] 64% ⏳
+### FASE 2: INTERFACE LIQUID GLASS [██████████] 100% ✅
 
-Design System, componentes, efeitos, animações E aplicação no app existente!
+Design System completo + Interface profissional aplicada!
 
 ✅ **v0.9.6** - Design System Foundation (31 Out 2025)
 - 100+ design tokens definidos
@@ -402,15 +401,25 @@ Design System, componentes, efeitos, animações E aplicação no app existente!
 - ~620 linhas refatoradas
 - PRIMEIRA APLICAÇÃO REAL! 🎉
 
-⏳ **v0.9.11** - Refactor Views Secundárias (próxima)
+✅ **v0.9.11** - Refactor Views Secundárias (01 Nov 2025)
 - LogListView com glass components
 - RecentTracksView estilizado
-- Polish e consistência
+- 18 componentes aplicados
+- 60+ tokens utilizados
+- ~500 linhas refatoradas
+- Empty/loading/error states polidos
 
-⏳ **v0.9.12** - Polish Final + Dark Mode
-- Dark mode perfeito
-- Ajustes finais
-- FASE 2 - 100% COMPLETA!
+✅ **v0.9.12** - Polish Final + Dark Mode (01 Nov 2025)
+- PreferencesView refatorado
+- Dark mode verificado (100%)
+- Polish geral aplicado
+- Consistency pass completo
+- ~220 linhas refatoradas
+- **FASE 2 - 100% COMPLETA!** 🎊
+
+### RESUMO FASE 2
+
+**7 Versões** | **10.700 linhas** | **29 componentes** | **100+ tokens** | **6 views refatoradas**
 
 ⏳ **FASE 3: WIDGET DE DESKTOP** (Q1 2026)
 - WidgetKit implementation
@@ -439,11 +448,6 @@ Design System, componentes, efeitos, animações E aplicação no app existente!
 ---
 
 ## 🗺️ Roadmap Detalhado
-
-### v0.9.11 - v0.9.12 (Q4 2025)
-**Interface Liquid Glass - Finalização**
-- [ ] v0.9.11: Refactor Views Secundárias
-- [ ] v0.9.12: Polish Final + Dark Mode
 
 ### v1.0.0 (Q1 2026) 🎉
 **Release Oficial**
@@ -605,12 +609,12 @@ furnished to do so, subject to the following conditions:
 ┌─────────────────────────────────────────────────────────┐
 │ CÓDIGO                                                  │
 ├─────────────────────────────────────────────────────────┤
-│ Total Linhas Código:      ~12.500 linhas ⬆             │
-│ Arquivos Swift:           ~46 arquivos ⬆               │
+│ Total Linhas Código:      ~13.000 linhas ⬆             │
+│ Arquivos Swift:           ~46 arquivos                  │
 │ Arquivos SwiftUI Views:   ~10 arquivos                  │
 │ Arquivos Core:            ~15 arquivos                  │
 │ Arquivos Design System:   ~21 arquivos                  │
-│ Arquivos Componentes:     ~9 arquivos                   │
+│ Arquivos Componentes:     ~13 arquivos ⬆               │
 │ Arquivos Effects:         ~4 arquivos                   │
 │ Arquivos Animations:      ~4 arquivos                   │
 │ Arquivos Testes/Mocks:    ~2 arquivos                   │
@@ -619,9 +623,9 @@ furnished to do so, subject to the following conditions:
 ┌─────────────────────────────────────────────────────────┐
 │ BREAKDOWN POR CATEGORIA                                 │
 ├─────────────────────────────────────────────────────────┤
-│ App Layer (Views):        ~2.100 linhas (17%) ⬆        │
-│ Core Layer (Services):    ~2.000 linhas (16%)          │
-│ Design System:            ~8.400 linhas (67%)          │
+│ App Layer (Views):        ~2.300 linhas (18%) ⬆        │
+│ Core Layer (Services):    ~2.000 linhas (15%)          │
+│ Design System:            ~8.700 linhas (67%) ⬆        │
 │   ├─ Tokens:              ~2.500 linhas                 │
 │   ├─ Theme:               ~400 linhas                   │
 │   ├─ Components Base:     ~1.800 linhas                 │
@@ -636,7 +640,8 @@ furnished to do so, subject to the following conditions:
 ┌─────────────────────────────────────────────────────────┐
 │ MÉTRICAS DE QUALIDADE                                   │
 ├─────────────────────────────────────────────────────────┤
-│ Commits:                  ~110 ⬆                        │
+│ Commits:                  ~115 ⬆                        │
+│ Tags (Versões):           12 ⬆                          │
 │ Issues Fechados:          3 (bugs corrigidos)          │
 │ Pull Requests:            0 (projeto novo)             │
 │ Contributors:             1                            │
@@ -645,6 +650,22 @@ furnished to do so, subject to the following conditions:
 │ Thread-Safety:            100%                         │
 │ Type-Safety:              100%                         │
 │ Code Quality:             ⭐⭐⭐⭐⭐                     │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│ FASE 2 - CONQUISTAS                                     │
+├─────────────────────────────────────────────────────────┤
+│ Versões Entregues:        7 versões (v0.9.6-12)        │
+│ Linhas Escritas:          ~10.700 linhas               │
+│ Componentes Criados:      29 componentes               │
+│ Tokens Definidos:         100+ tokens                  │
+│ Views Refatoradas:        6 views                      │
+│ Componentes em Produção:  40+ instâncias               │
+│ Tokens Utilizados:        150+ vezes                   │
+│ Coverage Design System:   100% do app                  │
+│ Dark Mode:                ✅ Perfeito                   │
+│ Tempo Investido:          ~60 horas                    │
+│ Status:                   🎊 COMPLETA!                 │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -669,10 +690,13 @@ furnished to do so, subject to the following conditions:
 | Design System | ✅ Completo | v0.9.6 | Tokens + Theme |
 | Componentes Base | ✅ Completo | v0.9.7 | 5 componentes glass |
 | Glassmorphism Effects | ✅ Completo | v0.9.8 | Blur + Gradients + Backgrounds |
-| Animações | ✅ Completo | v0.9.9 | Sistema completo de animações |
+| Animações | ✅ Completo | v0.9.9 | Sistema completo |
 | Menu Bar Popover | ✅ Completo | v0.9.10 | Liquid Glass aplicado |
 | Janela Principal | ✅ Completo | v0.9.10 | Interface refatorada |
-| Liquid Glass UI | ⏳ Em Progresso | v0.9.10-11 | Refactor em andamento |
+| Views Secundárias | ✅ Completo | v0.9.11 | Tabs refatoradas |
+| PreferencesView | ✅ Completo | v0.9.12 | Glass design |
+| Dark Mode | ✅ Completo | v0.9.12 | 100% suportado |
+| Liquid Glass UI | ✅ Completo | v0.9.12 | FASE 2 COMPLETA! 🎊 |
 | Widget Desktop | 📋 Planejado | v1.0.0 | WidgetKit |
 | Estatísticas | 📋 Planejado | v1.0.0 | Gráficos e insights |
 | Testes Unitários | 📋 Planejado | v1.0.0 | 80%+ cobertura |
@@ -712,12 +736,6 @@ furnished to do so, subject to the following conditions:
 - ℹ️ Warning normal com App Sandbox
 - ℹ️ Pode ignorar, não afeta funcionalidade
 
-**5. Histórico de logs não atualiza**
-- ⚠️ Bug conhecido (v0.9.3)
-- ℹ️ Dados existem no Core Data
-- ℹ️ Não afeta scrobbling
-- 🔄 Será corrigido em v0.9.11
-
 ---
 
 ## 📚 Recursos Adicionais
@@ -741,6 +759,8 @@ furnished to do so, subject to the following conditions:
 <div align="center">
 
 **Feito com ❤️ e Swift**
+
+🎊 **FASE 2 COMPLETA!** 🎊
 
 Se você gostou do projeto, considere dar uma ⭐!
 
