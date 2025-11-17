@@ -784,7 +784,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 0.9.10;
+				MARKETING_VERSION = 0.9.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diegocastilho.NowPlaying;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -830,7 +830,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
-				MARKETING_VERSION = 0.9.10;
+				MARKETING_VERSION = 0.9.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diegocastilho.NowPlaying;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
