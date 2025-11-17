@@ -58,6 +58,7 @@
 		9FB9D5FC2EC7F442008CC099 /* TransitionPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9D5FB2EC7F442008CC099 /* TransitionPreset.swift */; };
 		9FB9D5FE2EC804F7008CC099 /* MicroInteractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9D5FD2EC804F7008CC099 /* MicroInteractions.swift */; };
 		9FB9D6002EC80634008CC099 /* AnimatedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9D5FF2EC80634008CC099 /* AnimatedComponents.swift */; };
+		9FB9D6022ECB7411008CC099 /* ContentView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9D6012ECB7411008CC099 /* ContentView 2.swift */; };
 		9FF3A8672EB6833E00B1395B /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8662EB6833E00B1395B /* GlassCard.swift */; };
 		9FF3A8692EB684B200B1395B /* GlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A8682EB684B200B1395B /* GlassButton.swift */; };
 		9FF3A86B2EB689D400B1395B /* GlassBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3A86A2EB689D400B1395B /* GlassBadge.swift */; };
@@ -124,6 +125,7 @@
 		9FB9D5FB2EC7F442008CC099 /* TransitionPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionPreset.swift; sourceTree = "<group>"; };
 		9FB9D5FD2EC804F7008CC099 /* MicroInteractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroInteractions.swift; sourceTree = "<group>"; };
 		9FB9D5FF2EC80634008CC099 /* AnimatedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedComponents.swift; sourceTree = "<group>"; };
+		9FB9D6012ECB7411008CC099 /* ContentView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView 2.swift"; sourceTree = "<group>"; };
 		9FF3A8662EB6833E00B1395B /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		9FF3A8682EB684B200B1395B /* GlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassButton.swift; sourceTree = "<group>"; };
 		9FF3A86A2EB689D400B1395B /* GlassBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassBadge.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			children = (
 				9F41EAA12EAD3F780022F603 /* ArtworkWidgetView.swift */,
 				9F41EAA22EAD3F780022F603 /* ContentView.swift */,
+				9FB9D6012ECB7411008CC099 /* ContentView 2.swift */,
 				9F41EAA32EAD3F780022F603 /* LaunchAtLoginManager.swift */,
 				9F41EAA42EAD3F780022F603 /* LaunchAtLoginManagerSimplified.swift */,
 				9F41EAA52EAD3F780022F603 /* LaunchAtLoginTestInterface.swift */,
@@ -576,6 +579,7 @@
 				9F41EB7C2EAD3F780022F603 /* KeychainHelper.swift in Sources */,
 				9F41EB7D2EAD3F780022F603 /* KeychainError.swift in Sources */,
 				9F41EB7E2EAD3F780022F603 /* LogListView.swift in Sources */,
+				9FB9D6022ECB7411008CC099 /* ContentView 2.swift in Sources */,
 				9FF3A8732EB6E6B000B1395B /* BlurStyle.swift in Sources */,
 				9F41EB7F2EAD3F780022F603 /* KeychainService.swift in Sources */,
 				9F41EB802EAD3F780022F603 /* CoreDataStack.swift in Sources */,
@@ -756,7 +760,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = F83F7B693P;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -802,7 +806,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = F83F7B693P;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
